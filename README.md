@@ -40,6 +40,3 @@ https://docs.google.com/spreadsheets/d/117g3HnjpcVDf-4JWIqwb0qRlWV2BM9VawBf4HKll
 - URL 顧客側
 - URL 管理側
 
-## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。

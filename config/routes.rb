@@ -24,7 +24,6 @@ Rails.application.routes.draw do
 
   scope module: :member do
     resource :member, only:[:show, :edit, :create, :update]
-    patch 'without'
   end
 
 end

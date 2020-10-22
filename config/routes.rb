@@ -19,10 +19,11 @@ Rails.application.routes.draw do
   namespace :admin do
   	root to: "requests#top"
     resources :event_genres, only:[:index, :edit, :create, :update]
+    resources :members, only:[:index, :edit, :create, :update]
   end
 
   scope module: :member do
-    resource :member, only:[:show, :edit, :create]
+    resource :member, only:[:show, :edit, :create, :update]
   end
 
 end

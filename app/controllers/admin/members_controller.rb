@@ -1,32 +1,32 @@
-class Member::MembersController < ApplicationController
+class Admin::MembersController < ApplicationController
 
-	before_action :authenticate_member!
+	before_action :authenticate_admin!
 
-	def show
-		@member = current_member
+	def index
+		@members = Member.all
 	end
 
 	def edit
-		@member = current_member
+		@member = Member.find(params[:id])
 	end
 
 	def update
-		@member = current_member
+		@member = Member.find(params[:id])
 		if @member.update(member_params)
-		   redirect_to member_path
+		   redirect_to admin_members_path
 		else
 		   render :edit
 		end
 	end
 
-	private
+    private
     def member_params
       params.require(:member).permit(:first_name,
                                      :last_name,
                                      :first_name_kana,
                                      :last_name_kana,
                                      :company_name,
-                                     :email)
+                                     :email,
+                                     :is_deleted)
     end
-
 end

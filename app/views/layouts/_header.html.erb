@@ -2,10 +2,16 @@
 <ul class="nav navbar-nav navbar-right">
   <% if member_signed_in? %>
   <li>
+    <%= link_to "マイページ", member_path(current_member) %>
+  </li>
+  <li>
     <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
   </li>
 
   <% elsif admin_signed_in? %>
+  <li>
+    <%= link_to "会員一覧", admin_members_path %>
+  </li>
   <li>
     <%= link_to "イベントジャンル一覧", admin_event_genres_path %>
   </li>

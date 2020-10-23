@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Worker</title>
+    <title><%= @page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,25 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+      <div class="header-container clearfix">
+      <%= render "layouts/header" %>
+      </div>
+    </header>
+
+    <main>
+    <div class="main clearfix">
+      <%= yield %>
+    </div>
+    </main>
+
+    <footer>
+    <div class="footer-container clearfix">
+      <%= render "layouts/footer" %>
+    </div>
+    </footer>
+
+
   </body>
 </html>

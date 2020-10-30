@@ -31,7 +31,6 @@ class Admin::EventGenresController < ApplicationController
 	end
 
 	private
-
 	def genre_params
 	    params.require(:event_genre).permit(:name, :other, :is_active)
 	end

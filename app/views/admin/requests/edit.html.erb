@@ -1,0 +1,53 @@
+<% @page_title = "予約申請詳細" %>
+
+<div class="container">
+
+<h2><%= @page_title %></h2>
+
+<%= link_to 'back', admin_requests_path, class: 'btn-sm btn-primary' %>
+<br>
+
+<%= form_with :model => @request, url:admin_request_path(@request), method: :patch, local: true  do |f| %>
+
+<div class="field row">
+  <%= f.select :approval_status, Request.approval_statuses.keys %>
+</div>
+
+<div class="actions row"><br />
+  <%= f.submit "edit" %>
+</div>
+<% end %>
+
+<table class="table table-bordered">
+<thead>
+ <tr>
+  <th class="info">会員ID</th>
+  <th class="info">イベント日</th>
+  <th class="info">イベントジャンル</th>
+  <th class="info">イベント</th>
+  <th class="info">イベント詳細</th>
+  <th class="info">責任者</th>
+  <th class="info">人数</th>
+  <th class="info">協力会社</th>
+  <th class="info">状態</th>
+ </tr>
+</thead>
+
+<tbody>
+ <tr>
+  <td><%= @request.member_id %></td>
+  <td>
+      <%= @request.start_day.strftime("%Y年%m月%d日 %H:%M") %>
+      <span>~</span>
+      <%= @request.finish_day.strftime("%Y年%m月%d日 %H:%M") %>
+  </td>
+  <td><%= @request.event_genre.name %></td>
+  <td><%= @request.title %></td>
+  <td><%= @request.body %></td>
+  <td><%= @request.chief_name %></td>
+  <td><%= @request.people %></td>
+  <td><%= @request.help %></td>
+  <td><%= @request.approval_status %></td>
+ </tr>
+</tbody>
+</table>

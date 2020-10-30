@@ -1,0 +1,2 @@
+module Member::RequestsHelper
+end

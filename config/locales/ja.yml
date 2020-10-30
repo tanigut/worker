@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    models:
+      member: 会員情報
+      request: リクエスト
+      event_jenre: イベントジャンル
+      admin:　管理者
+  attributes:
+      member:
+        email: メールアドレス
+        encrypted_password:
+        name: 氏名
+        last_name: 姓
+        first_name: 名
+        last_name_kana: セイ
+        first_name_kana: メイ
+        company_name: 会社名
+        is_deleted: 会員ステータス
+      admin:
+        email: メールアドレス
+        encrypted_password:　パスワード
+      event_jenre:
+        

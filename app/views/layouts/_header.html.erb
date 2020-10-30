@@ -1,33 +1,49 @@
 
-<ul class="nav navbar-nav navbar-right">
+<ul class="nav-list">
   <% if member_signed_in? %>
-  <li>
+  <li class="nav-list-item">
     <%= link_to "マイページ", member_path(current_member) %>
   </li>
-  <li>
+  <li class="nav-list-item">
+    <%= link_to "予約申請一覧", requests_path(current_member) %>
+  </li>
+  <li class="nav-list-item">
+    <%#= link_to "イベント履歴", reports_path(current_member) %>
+  </li>
+  <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
   </li>
 
   <% elsif admin_signed_in? %>
-  <li>
+  <li class="nav-list-item">
+    <%#= link_to "本日の", admin_members_path %>
+  </li>
+  <li class="nav-list-item">
     <%= link_to "会員一覧", admin_members_path %>
   </li>
-  <li>
+  <li class="nav-list-item">
+    <%= link_to "予約申請一覧", admin_requests_path %>
+  </li>
+  <li class="nav-list-item">
+    <%#= link_to "報告一覧", admin_reports_path %>
+  </li>
+  <li class="nav-list-item">
     <%= link_to "イベントジャンル一覧", admin_event_genres_path %>
   </li>
-  <li>
+  <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
   </li>
 
   <% else %>
-  <li>
+  <li class="nav-list-item">
     <%= link_to "新規登録(メンバー)", new_member_registration_path %>
   </li>
-  <li>
+  <li class="nav-list-item">
     <%= link_to "ログイン(メンバー)", new_member_session_path %>
   </li>
-  <li>
+  <li class="nav-list-item">
     <%= link_to "ログイン(管理者)", new_admin_session_path %>
   </li>
   <% end %>
 </ul>
+

@@ -4,6 +4,8 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :requests
+
   def active_for_authentication?
     super && (self.is_deleted == true)
   end

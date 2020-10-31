@@ -1,0 +1,49 @@
+<% @page_title = "新規予約依頼登録" %>
+
+<div class="container">
+
+<h2><%= @page_title %></h2>
+
+<%= form_with :model => @request, url:requests_path(@request), method: :post, local: true  do |f| %>
+<div class="field row">
+  <%= f.collection_select(:event_genre_id, @genres, :id, :name, prompt: "--選択してください--") %>
+</div>
+
+<div class="field row">
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
+</div>
+
+<div class="field row">
+  <%= f.label :body %><br />
+  <%= f.text_field :body %>
+</div>
+
+<div class="field row">
+  <%= f.label :event_day %><br />
+  <%= f.datetime_field :start_day %>
+  <span>〜</span>
+  <%= f.datetime_field :finish_day %>
+</div>
+
+<div class="field row">
+  <%= f.label :chief_name %><br />
+  <%= f.text_field :chief_name %>
+</div>
+
+<div class="field row">
+  <%= f.label :people %><br />
+  <%= f.text_field :people %>
+</div>
+
+<div class="field row">
+  <%= f.label :help %><br />
+  <%= f.text_field :help %>
+</div>
+
+<div class="actions row"><br />
+  <%= f.submit :apply, class: "btn btn-success" %>
+</div>
+<% end %>
+
+</div>

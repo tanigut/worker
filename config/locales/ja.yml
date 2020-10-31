@@ -4,7 +4,7 @@ ja:
       member: 会員情報
       request: リクエスト
       event_jenre: イベントジャンル
-      admin:　管理者
+      admin: 管理者
   attributes:
       member:
         email: メールアドレス
@@ -18,6 +18,5 @@ ja:
         is_deleted: 会員ステータス
       admin:
         email: メールアドレス
-        encrypted_password:　パスワード
-      event_jenre:
-        
+        encrypted_password: パスワード
+      event_jenre: イベントジャンル

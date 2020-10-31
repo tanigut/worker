@@ -32,20 +32,6 @@ ActiveRecord::Schema.define(version: 2020_10_30_030301) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer "event_genre_id"
-    t.string "title"
-    t.date "event_day"
-    t.integer "people"
-    t.text "body"
-    t.string "help"
-    t.string "chief_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "member_id"
-    t.integer "approval_status", default: 0, null: false
-  end
-
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -76,15 +62,6 @@ ActiveRecord::Schema.define(version: 2020_10_30_030301) do
     t.string "help"
     t.string "chief_name"
     t.integer "approval_status", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "reservations", force: :cascade do |t|
-    t.integer "member_id"
-    t.integer "event_id"
-    t.string "comment"
-    t.boolean "is_approval", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,10 +2,6 @@ class Member::RequestsController < ApplicationController
 
 	before_action :authenticate_member!
 
-	def index
-		@requests = current_member.requests
-	end
-
 	def new
 		@request = Request.new
 		@genres = EventGenre.where(is_active: :true)
@@ -45,9 +41,9 @@ class Member::RequestsController < ApplicationController
     end
 
 	private
+
     def request_params
         params.require(:request).permit(:event_genre_id,
-        	                            :member_id,
       	                                :start_day,
       	                                :finish_day,
                                         :people,

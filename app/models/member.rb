@@ -5,6 +5,7 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :requests
+  has_many :reports
 
   def active_for_authentication?
     super && (self.is_deleted == true)

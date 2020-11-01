@@ -4,19 +4,22 @@
 
 <h2><%= @page_title %></h2>
 
-<%= link_to 'back', admin_requests_path, class: 'btn-sm btn-primary' %>
+<br>
+
+<%= link_to '戻る', admin_requests_path, class: 'btn btn-primary' %>
+
+<br>
 <br>
 
 <%= form_with :model => @request, url:admin_request_path(@request), method: :patch, local: true  do |f| %>
 
 <div class="field row">
-  <%= f.select :approval_status, Request.approval_statuses.keys %>
-</div>
-
-<div class="actions row"><br />
-  <%= f.submit "edit" %>
+  <%= f.select :approval_status, Request.approval_statuses.keys.map {|k| [I18n.t("enums.request.approval_status.#{k}"), k]} %>
+  <%= f.submit "更新", class: "btn btn-success" %>
 </div>
 <% end %>
+
+<br>
 
 <table class="table table-bordered">
 <thead>
@@ -30,6 +33,9 @@
   <th class="info">人数</th>
   <th class="info">協力会社</th>
   <th class="info">状態</th>
+  <% if @request.approval_status == "finish" %>
+  <th class="info"></th>
+  <% end %>
  </tr>
 </thead>
 
@@ -47,7 +53,12 @@
   <td><%= @request.chief_name %></td>
   <td><%= @request.people %></td>
   <td><%= @request.help %></td>
-  <td><%= @request.approval_status %></td>
+  <td><%= @request.approval_status_i18n %></td>
+  <% if @request.approval_status == "finish" %>
+  <td><%= link_to '報告を見る', admin_request_report_path(@request), class: 'btn-sm btn-primary' %></td>
+  <% end %>
  </tr>
 </tbody>
 </table>
+
+</div>

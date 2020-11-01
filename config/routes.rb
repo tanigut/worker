@@ -20,14 +20,16 @@ Rails.application.routes.draw do
   	root to: "requests#top"
     resources :event_genres, only:[:index, :edit, :create, :update]
     resources :members, only:[:index, :edit, :create, :update]
-    resources :requests, only:[:index, :edit, :update]
-    resources :reports, only:[:index, :show]
+    resources :requests, only:[:index, :edit, :update] do
+      resources :reports, only:[:index, :show]#, shallow: true
+    end
   end
 
   scope module: :member do
     resource :member, only:[:show, :edit, :create, :update]
-    resources :requests, only:[:index, :new, :create, :edit, :update, :destroy]
-    resources :reports, only:[:show, :new, :create, :update]
+    resources :requests, only:[:index, :new, :create, :edit, :update, :destroy] do
+      resources :reports, only:[:show, :new, :create, :update]#, shallow: true
+    end
   end
 
 end

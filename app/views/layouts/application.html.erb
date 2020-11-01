@@ -13,15 +13,23 @@
 
     <header>
       <div class="header-container clearfix">
+
       <% if admin_signed_in? %>
-      <%= link_to admin_root_path do %>
-      <h1>Worker</h1>
+        <%= link_to admin_root_path do %>
+        <h1>Worker</h1>
       <% end %>
+
+      <% elsif member_signed_in? %>
+        <%= link_to root_path do %>
+        <h1>Worker</h1>
+        <% end %>
+
       <% else %>
-      <%= link_to root_path do %>
-      <h1>Worker</h1>
+        <%= link_to root_path do %>
+        <h1>Worker</h1>
+        <% end %>
       <% end %>
-      <% end %>
+
       </div>
     </header>
     <nav>

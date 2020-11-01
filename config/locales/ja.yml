@@ -19,4 +19,12 @@ ja:
       admin:
         email: メールアドレス
         encrypted_password: パスワード
-      event_jenre: イベントジャンル
+      event_jenre:
+      request:
+  enums:
+      request:
+        approval_status:
+          responding: "対応中"
+          approval: "承認"
+          denial: "否認"
+          finish: "終了"

@@ -1,0 +1,59 @@
+<% @page_title = "報告ページ" %>
+
+<div class="container">
+
+<h2><%= @page_title %></h2>
+
+<%= render "body", report: @report, request: @request %>
+
+<!-- 現在時間を表示　-->
+<h1 id="time"></h1>
+<script>
+  time();
+  function time(){
+      var now = new Date();
+      document.getElementById("time").innerHTML = now.toLocaleTimeString();
+  }
+  setInterval('time()',1000);
+</script>
+<!-- 現在時間を表示　-->
+
+  <!-- 入館時刻(in_at)が空の場合 -->
+  <% if @report.in_at.nil? %>
+    <%= form_with(model:[@request,@report], local: true) do |f| %>
+    <%= f.hidden_field :in_at, value: @now %>
+    <div class="actions row"><br />
+      <%= f.submit :開始, class: "btn btn-success" %>
+    </div>
+    <% end %>
+  <!-- 入館時刻(in_at)が空の場合 -->
+
+  <!-- 退館時刻(out_at)が空の場合 -->
+  <% elsif @report.out_at.nil? %>
+    <%= form_with(model:[@request,@report], local: true) do |f| %>
+    <div class="field row">
+      <%= f.label :作業画像 %><br />
+      <%= f.attachment_field :image, class: 'img_field', style: 'display:none;' %>
+      <%= f.attachment_field :image %>
+    </div>
+
+    <div class="field row">
+      <%= f.label :作業詳細 %><br />
+      <%= f.text_area :body %>
+    </div>
+
+    <%= f.hidden_field :out_at, value: @now %>
+
+    <div class="actions row"><br />
+      <%= f.submit :終了する, class: "btn btn-success" %>
+    </div>
+    <% end %>
+    <!-- 退館時刻(out_at)が空の場合 -->
+
+  <!-- 作業終了時 -->
+  <% else %>
+    <h3>お疲れ様でした。</h3>
+  <% end %>
+  <!-- 作業終了時 -->
+
+</div>

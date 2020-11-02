@@ -1,0 +1,25 @@
+<% @page_title = "検索結果" %>
+
+<div class="container">
+
+<h2><%= @page_title %></h2>
+
+
+<div class="text-right">
+<!--検索-->
+<%= render "form" %>
+<!--検索-->
+</div>
+
+<br>
+
+<% if @requests.count >  0 %>
+  <%= render "admin/requests/body", requests: @requests %>
+<% else %>
+  <h2>検索した項目はありません</h2>
+<% end %>
+
+<%= paginate @requests %>
+
+</div>
+

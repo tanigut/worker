@@ -3,7 +3,7 @@ class Admin::EventGenresController < ApplicationController
 	before_action :authenticate_admin!
 
 	def index
-		@genres = EventGenre.all
+		@genres = EventGenre.all.page(params[:page]).per(15)
 		@genre = EventGenre.new
 	end
 
@@ -31,6 +31,7 @@ class Admin::EventGenresController < ApplicationController
 	end
 
 	private
+
 	def genre_params
 	    params.require(:event_genre).permit(:name, :other, :is_active)
 	end

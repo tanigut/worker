@@ -3,7 +3,7 @@ class Member::RequestsController < ApplicationController
 	before_action :authenticate_member!
 
 	def index
-		@requests = current_member.requests
+		@requests = current_member.requests.page(params[:page]).per(15)
 	end
 
 	def new
@@ -45,9 +45,9 @@ class Member::RequestsController < ApplicationController
     end
 
 	private
+
     def request_params
         params.require(:request).permit(:event_genre_id,
-        	                            :member_id,
       	                                :start_day,
       	                                :finish_day,
                                         :people,

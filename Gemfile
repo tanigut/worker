@@ -66,5 +66,14 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 gem 'pry-byebug'
 gem 'rails-i18n'
+gem 'enum_help'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
+gem 'kaminari'
+gem 'kaminari-i18n'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+

@@ -8,24 +8,15 @@
     <%= link_to "予約申請一覧", requests_path(current_member) %>
   </li>
   <li class="nav-list-item">
-    <%#= link_to "イベント履歴", reports_path(current_member) %>
-  </li>
-  <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
   </li>
 
   <% elsif admin_signed_in? %>
   <li class="nav-list-item">
-    <%#= link_to "本日の", admin_members_path %>
-  </li>
-  <li class="nav-list-item">
     <%= link_to "会員一覧", admin_members_path %>
   </li>
   <li class="nav-list-item">
     <%= link_to "予約申請一覧", admin_requests_path %>
-  </li>
-  <li class="nav-list-item">
-    <%#= link_to "報告一覧", admin_reports_path %>
   </li>
   <li class="nav-list-item">
     <%= link_to "イベントジャンル一覧", admin_event_genres_path %>

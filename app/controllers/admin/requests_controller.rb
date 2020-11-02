@@ -8,7 +8,7 @@ class Admin::RequestsController < ApplicationController
 	end
 
 	def index
-        @requests = Request.all
+        @requests = Request.all.page(params[:page]).per(15)
 	end
 
 	def edit
@@ -25,6 +25,7 @@ class Admin::RequestsController < ApplicationController
 	end
 
 	private
+
     def request_params
         params.require(:request).permit(:approval_status)
     end

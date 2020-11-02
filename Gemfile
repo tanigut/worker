@@ -71,3 +71,9 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'kaminari'
 gem 'kaminari-i18n'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+

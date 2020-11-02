@@ -6,8 +6,9 @@ class Admin::MembersController < ApplicationController
 		@members = Member.all.page(params[:page]).per(15)
 	end
 
-	def edit
-		@member = Member.find(params[:id])
+	def show
+		@member =  Member.find(params[:id])
+		@requests = @member.requests
 	end
 
 	def update

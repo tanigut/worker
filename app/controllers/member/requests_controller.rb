@@ -2,6 +2,10 @@ class Member::RequestsController < ApplicationController
 
 	before_action :authenticate_member!
 
+	def index
+		@requests = current_member.requests.page(params[:page]).per(15)
+	end
+
 	def new
 		@request = Request.new
 		@genres = EventGenre.where(is_active: :true)

@@ -1,23 +1,23 @@
-<% @page_title = "予約申請一覧" %>
+<% @page_title = "検索結果" %>
 
 <div class="container">
 
 <h2><%= @page_title %></h2>
 
-<%= link_to '新規依頼する', new_request_path, class: 'btn btn-primary' %>
 
 <div class="text-right">
 <!--検索-->
-<%= render "member/searches/form" %>
+<%= render "form" %>
 <!--検索-->
 </div>
 
 <br>
 
+<% if @requests.count >  0 %>
 <table class="table table-bordered">
 <thead>
  <tr>
-  <th class="info">イベント予定日</th>
+  <th class="info">イベント日</th>
   <th class="info">イベントジャンル</th>
   <th class="info">イベント</th>
   <th class="info">イベント詳細</th>
@@ -33,11 +33,9 @@
  <% @requests.each do |request| %>
  <tr>
   <td>
-      <% if request.start_day.present? && request.finish_day.present? %>
-      <%= request.start_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
-      <span>〜</span>
-      <%= request.finish_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
-      <% end %>
+      <%= request.start_day.strftime("%Y年%m月%d日 %H:%M") %>
+      <span>~</span>
+      <%= request.finish_day.strftime("%Y年%m月%d日 %H:%M") %>
   </td>
   <td><%= request.event_genre.name %></td>
   <td><%= request.title %></td>
@@ -46,7 +44,7 @@
   <td><%= request.people %></td>
   <td><%= request.help %></td>
   <td><%= request.approval_status_i18n %></td>
- <!--承認ステータスが否認の場合-->
+  <!--承認ステータスが否認の場合-->
  <% if request.approval_status == "denial" %>
   <td>
       <%= link_to '編集', edit_request_path(request), class: 'btn-sm btn-primary' %>
@@ -78,6 +76,8 @@
 </tbody>
 </table>
 
-<%= paginate @requests %>
+<% else %>
+<h2>検索した項目はありません</h2>
+<% end %>
 
 </div>

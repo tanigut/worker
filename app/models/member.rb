@@ -10,4 +10,17 @@ class Member < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == true)
   end
+
+  def self.search(search,word)
+    if search == "_match"
+       @member = Member.where(is_deleted: true)
+    elsif search == "perfect_match"
+          @member = Member.where("last_name LIKE?","#{word}").or Member.where("first_name LIKE?","#{word}")
+    elsif search == "partial_match"
+          @member = Member.where("last_name LIKE?","%#{word}%").or Member.where("first_name LIKE?","%#{word}%")
+    else
+          @member = Member.all
+    end
+  end
+
 end

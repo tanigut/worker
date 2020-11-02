@@ -1,10 +1,3 @@
-<% @page_title = "会員一覧" %>
-
-<div class="container">
-
-<h2><%= @page_title %></h2>
-
-
 <table class="table table-bordered">
 <thead>
  <tr>
@@ -13,12 +6,10 @@
   <th class="info">メールアドレス</th>
   <th class="info">会社名</th>
   <th class="info">会員ステータス</th>
-  <th class="info"></th>
  </tr>
 </thead>
 
 <tbody>
- <% @members.each do |member| %>
  <tr>
   <td><%= member.id %></td>
   <td><%= member.last_name_kana %><%= member.first_name_kana %><br>
@@ -27,14 +18,6 @@
   <td><%= member.email %></td>
   <td><%= member.company_name %></td>
   <td><%= member.is_deleted == true ? "有効" : "無効" %></td>
-  <td>
-      <%= link_to '詳細', admin_member_path(member), class: 'btn-sm btn-primary' %>
-  </td>
  </tr>
- <% end %>
 </tbody>
 </table>
-
-<%= paginate @members %>
-
-</div>

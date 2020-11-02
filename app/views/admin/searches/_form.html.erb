@@ -1,0 +1,6 @@
+<%= form_with :model => @search, url:admin_search_path, method: :get, local: true  do |f| %>
+
+  <%= select_tag 'search', options_for_select([["選択してください",:include_blank ], ["対応中","responding_match"], ["承認","approval_match"], ["否認","denial_match"], ["終了","finish_match"]]) %>
+
+  <%= submit_tag :検索, class: "btn btn-default" %>
+<% end %>

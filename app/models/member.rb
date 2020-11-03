@@ -11,6 +11,14 @@ class Member < ApplicationRecord
     super && (self.is_deleted == true)
   end
 
+  def full_name
+    last_name + " " + first_name
+  end
+
+  def full_name_kana
+    last_name_kana + " " + first_name_kana
+  end
+
   def self.search(search,word)
     if search == "_match"
        @member = Member.where(is_deleted: true)

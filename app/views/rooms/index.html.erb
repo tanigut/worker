@@ -1,0 +1,76 @@
+<% @page_title = "" %>
+
+<div class="container">
+
+<h2><%= @page_title %></h2>
+
+<%= @count %>
+
+<table class="table table-bordered">
+<thead>
+ <% if member_signed_in? %>
+ <tr>
+   <th class="info"></th>
+   <th class="info"></th>
+ </tr>
+ <% elsif admin_signed_in? %>
+ <tr>
+   <th class="info">会員id</th>
+   <th class="info">名前</th>
+   <th class="info">会社名</th>
+   <th class="info"></th>
+ </tr>
+ <% end %>
+</thead>
+
+<tbody>
+   <% if member_signed_in? %>
+   <% @admins.each do |admin| %>
+   <tr>
+    <td><h4>管理者</h4></td>
+    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+    <% if @admin_ids.include?(admin.id) %>
+    <td>
+        <%= link_to "チャットへ", room_path(current_member.rooms.find_by(admin_id: admin.id)) %>
+    </td>
+   <% else %>
+    <%#= form_for Room.new do |f| %>
+    <%= form_with model: @room, local: true do |f| %>
+    <%= f.hidden_field :admin_id, :value => admin.id %>
+    <td><%= f.submit %></td>
+    <% end %>
+   </tr>
+   <% end %>
+   <% end %>
+
+   <!--Adminでログインしてたら-->
+   <% elsif admin_signed_in? %>
+   <h2>会員一覧</h2>
+   <% @members.each do |member| %>
+   <tr>
+    <td><%= member.id %></td>
+    <td><%= member.full_name %></td>
+    <td><%= member.company_name %></td>
+    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+    <% if @member_ids.include?(member.id) %>
+    <td>
+        <%= link_to "チャットへ", room_path(current_admin.rooms.find_by(member_id: member.id)) %>
+    </td>
+    <% else %>
+    <%#= form_for Room.new do |f| %>
+    <%= form_with model: @room, local: true do |f| %>
+    <%= f.hidden_field :member_id, :value => member.id %>
+    <td><%= f.submit :新規 %></td>
+    <% end %>
+    <% end %>
+   </tr>
+   <% end %>
+   <% end %>
+</tbody>
+</table>
+
+<% if admin_signed_in? %>
+<%= paginate @members %>
+<% end %>
+
+</div>

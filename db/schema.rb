@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_053952) do
+ActiveRecord::Schema.define(version: 2020_11_03_102417) do
+
+  create_table "Messages", force: :cascade do |t|
+    t.integer "room_id"
+    t.boolean "is_member"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -73,6 +82,13 @@ ActiveRecord::Schema.define(version: 2020_10_31_053952) do
     t.string "help"
     t.string "chief_name"
     t.integer "approval_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

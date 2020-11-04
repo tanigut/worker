@@ -14,21 +14,28 @@
     <header>
       <div class="header-container clearfix">
 
+      <!--管理者がログイン-->
       <% if admin_signed_in? %>
         <%= link_to admin_root_path do %>
         <h1>Worker</h1>
       <% end %>
+      <!--管理者がログイン-->
 
+      <!--会員がログイン-->
       <% elsif member_signed_in? %>
         <%= link_to root_path do %>
         <h1>Worker</h1>
         <% end %>
         <p>ログイン：<%= current_member.last_name %>さん</p>
 
+      <!--会員がログイン-->
+
+      <!--ゲスト-->
       <% else %>
         <%= link_to root_path do %>
         <h1>Worker</h1>
         <% end %>
+      <!--ゲスト-->
 
       <% end %>
 

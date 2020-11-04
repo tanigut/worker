@@ -54,7 +54,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-      binding.pry
       if member_signed_in?
          #memberがログインしてたらmember_idを, adminがログインしてたらadmin_idを@roomにいれる
          @room = Room.new(room_admin_params)

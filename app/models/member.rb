@@ -6,6 +6,7 @@ class Member < ApplicationRecord
 
   has_many :requests
   has_many :reports
+  has_many :rooms
 
   def active_for_authentication?
     super && (self.is_deleted == true)

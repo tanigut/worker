@@ -8,6 +8,9 @@
     <%= link_to "予約申請一覧", requests_path(current_member) %>
   </li>
   <li class="nav-list-item">
+    <%= link_to "管理者へ連絡", rooms_path %>
+  </li>
+  <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
   </li>
 
@@ -22,6 +25,9 @@
     <%= link_to "イベントジャンル一覧", admin_event_genres_path %>
   </li>
   <li class="nav-list-item">
+    <%= link_to "メッセージ", rooms_path(@member) %>
+  </li>
+  <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
   </li>
 
@@ -31,6 +37,9 @@
   </li>
   <li class="nav-list-item">
     <%= link_to "ログイン(メンバー)", new_member_session_path %>
+  </li>
+  <li class="nav-list-item">
+    <%= link_to "このサイトについて", :about %>
   </li>
   <li class="nav-list-item">
     <%= link_to "ログイン(管理者)", new_admin_session_path %>

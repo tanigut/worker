@@ -19,12 +19,15 @@ class MessagesController < ApplicationController
         end
 
       elsif admin_signed_in?
-           @message.status = 1
-        if @message.save
-           redirect_to room_path(@room)
-        else
-           redirect_to room_path(@room)
-        end
+        @message.status = 1
+        @message.save!
+        redirect_to room_path(@room)
+        #@message.admin_id = current_admin.id
+        #if @message.save
+           #redirect_to room_path(@room)
+        #else
+          # redirect_to room_path(@room)
+        #end
       end
   end
 

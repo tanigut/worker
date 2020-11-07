@@ -8,6 +8,13 @@ class Member < ApplicationRecord
   has_many :reports
   has_many :rooms
 
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :company_name, presence: true, uniqueness: true
+
+
   def active_for_authentication?
     super && (self.is_deleted == true)
   end
@@ -18,18 +25,6 @@ class Member < ApplicationRecord
 
   def full_name_kana
     last_name_kana + " " + first_name_kana
-  end
-
-  def self.search(search,word)
-    if search == "_match"
-       @member = Member.where(is_deleted: true)
-    elsif search == "perfect_match"
-          @member = Member.where("last_name LIKE?","#{word}").or Member.where("first_name LIKE?","#{word}")
-    elsif search == "partial_match"
-          @member = Member.where("last_name LIKE?","%#{word}%").or Member.where("first_name LIKE?","%#{word}%")
-    else
-          @member = Member.all
-    end
   end
 
 end

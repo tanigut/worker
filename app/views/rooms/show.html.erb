@@ -2,10 +2,12 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
 
 <% if member_signed_in? %>
-  <h3><%#= @admin.email %>管理者とのチャットルーム</h3>
+  <h3>管理者とのチャットルーム</h3>
     <% @messages.each do |f| %>
       <!-- メッセージがMemberによるものだったら -->
       <% if f.is_member %>
@@ -48,12 +50,12 @@
   </div>
 <% end %>
 
+<div class="text-center">
 <%= form_with(model:[@room, @message], local: true)  do |f| %>
-  <div class="text-center">
-  <%= f.text_field :content %>
-  <%= f.submit :送信 %>
-  </div>
+  <%= f.text_field :content, :placeholder => "メッセージを入力"  %>
+  <%= f.submit :送信, class: "btn btn-success" %>
 <% end %>
+</div>
 
 <br>
 

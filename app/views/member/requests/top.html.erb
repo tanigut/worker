@@ -1,29 +1,25 @@
-<% @page_title = "管理者TOPページ" %>
+<% @page_title = "予定表" %>
 
 <div class="container">
 
 <div class="main-title">
-  <h2><%= @page_title %></h2>
+  <div class="fas fa-calendar-alt size"><%= @page_title %></div>
 </div>
-
-<h1>予約依頼数<%= @request.count %>件</h1>
 
 <%= month_calendar(attribute: :start_day, events: @requests, number_of_weeks: 2) do |date, requests| %>
   <%= date.day %>
   <% requests.each do |request| %>
-    <div>
-      <%#= request.title %>
       <span>・</span>
-      <%= link_to edit_admin_request_path(request) do %>
-        <%= request.title %>
-      <% end %>
+      <%= request.title %>
       <%= request.start_day.strftime("%H:%M") %>
       <span>〜</span>
       <%= request.finish_day.strftime("%H:%M") %>
       <br>
-    </div>
   <% end %>
 <% end %>
 
+<div class="text-right">
+<%= link_to '新規依頼する', new_request_path, class: 'btn btn-primary' %>
+</div>
 
 </div>

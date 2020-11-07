@@ -1,10 +1,12 @@
-<% @page_title = "" %>
+<% @page_title = "チャット" %>
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
-
-<%= @count %>
+<div class="main-title">
+  <div class="fas fa-comment-alt size">
+    <%= @page_title %>
+  </div>
+</div>
 
 <table class="table table-bordered">
 <thead>
@@ -24,6 +26,7 @@
 </thead>
 
 <tbody>
+   <!--Memberでログインしてたら-->
    <% if member_signed_in? %>
    <% @admins.each do |admin| %>
    <tr>
@@ -31,21 +34,17 @@
     <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
     <% if @admin_ids.include?(admin.id) %>
     <td>
-        <%= link_to "チャットへ", room_path(current_member.rooms.find_by(admin_id: admin.id)) %>
+        <%= button_to "チャットへ", room_path(current_member.rooms.find_by(admin_id: admin.id)), method: :get %>
+        <%= @rooms.pluck(:admin_id).select{ |id| id == admin.id }.count %>
     </td>
    <% else %>
-    <%#= form_for Room.new do |f| %>
-    <%= form_with model: @room, local: true do |f| %>
-    <%= f.hidden_field :admin_id, :value => admin.id %>
-    <td><%= f.submit %></td>
-    <% end %>
+    <td><%= button_to "新規", rooms_path(room: { admin_id: admin.id }) %></td>
    </tr>
    <% end %>
    <% end %>
 
    <!--Adminでログインしてたら-->
    <% elsif admin_signed_in? %>
-   <h2>会員一覧</h2>
    <% @members.each do |member| %>
    <tr>
     <td><%= member.id %></td>
@@ -54,14 +53,13 @@
     <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
     <% if @member_ids.include?(member.id) %>
     <td>
-        <%= link_to "チャットへ", room_path(current_admin.rooms.find_by(member_id: member.id)) %>
+        <%= button_to "チャットへ", room_path(current_admin.rooms.find_by(member_id: member.id)), method: :get %>
+        <h3 style="color:green">
+          <%= @rooms.pluck(:member_id).select{ |id| id == member.id }.count %>
+        </h3>
     </td>
     <% else %>
-    <%#= form_for Room.new do |f| %>
-    <%= form_with model: @room, local: true do |f| %>
-    <%= f.hidden_field :member_id, :value => member.id %>
-    <td><%= f.submit :新規 %></td>
-    <% end %>
+    <td><%= button_to "新規",rooms_path(room: {member_id: member.id}) %></td>
     <% end %>
    </tr>
    <% end %>

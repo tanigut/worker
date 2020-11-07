@@ -2,7 +2,9 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
 
 <%= form_with :model => @genre, url:admin_event_genre_path, method: :patch, local: true  do |f| %>
 <div class="field row">

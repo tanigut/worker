@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :member do
+    get "request" => "requests#top"
     get "search" => "searches#search"
     resource :member, only:[:show, :edit, :create, :update]
     resources :requests, only:[:index, :new, :create, :edit, :update, :destroy] do

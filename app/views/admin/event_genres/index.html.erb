@@ -2,9 +2,17 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
+
+<%= render "layouts/error_messages", model: @genre %>
 
 <%= form_with :model => @genre, url:admin_event_genres_path, method: :post, local: true  do |f| %>
+
+<br>
+<br>
+
 <div class="field row">
   <%= f.label :ジャンル名 %><br />
   <%= f.text_field :name %>
@@ -40,6 +48,6 @@
 </tbody>
 </table>
 
-<%= paginate @genres %>
+<%#= paginate @genres %>
 
 </div>

@@ -2,9 +2,14 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
 
 <%= render "body", report: @report, request: @request %>
+
+<div class="text-center">
+
 
 <!-- 現在時間を表示　-->
 <h1 id="time"></h1>
@@ -31,15 +36,19 @@
   <!-- 退館時刻(out_at)が空の場合 -->
   <% elsif @report.out_at.nil? %>
     <%= form_with(model:[@request,@report], local: true) do |f| %>
-    <div class="field row">
-      <%= f.label :作業画像 %><br />
-      <%= f.attachment_field :image, class: 'img_field', style: 'display:none;' %>
-      <%= f.attachment_field :image %>
+    <div class="image_wrapper">
+     <div class="item_image_btn">
+      <%#= f.attachment_field :image, class: 'img_field', style: 'display:none;' %>
+      <%#= f.attachment_field :image %>
+      <%= f.attachment_field :image, id: "file" %>
+     </div>
+    </div>
+    <div id="img_field" onClick="$('#file').click()" ><br />
+      <h4>ダブルクリックして画像選択</h4>
     </div>
 
-    <div class="field row">
-      <%= f.label :作業詳細 %><br />
-      <%= f.text_area :body %>
+    <div class="field row"><br />
+      <%= f.text_area :body, :size => "70x10", :placeholder => "作業内容を記載してください" %>
     </div>
 
     <%= f.hidden_field :out_at, value: @now %>
@@ -55,5 +64,8 @@
     <h3>お疲れ様でした。</h3>
   <% end %>
   <!-- 作業終了時 -->
+</div>
+
+<br>
 
 </div>

@@ -37,8 +37,8 @@ class Member::ReportsController < ApplicationController
 
     #update実行後approval_status = 終了になる
     def update
-        begin
-         Report.transaction do
+        #begin
+         #Report.transaction do
           @report = Report.find(params[:id])
           #今の時間を取得
           @now = Time.now
@@ -50,10 +50,10 @@ class Member::ReportsController < ApplicationController
           else
              render :new
           end
-         end
-        rescue => e
-        redirect_to new_request_report_path(@request)
-        end
+         #end
+        #rescue => e
+        #redirect_to new_request_report_path(@request)
+        #end
     end
 
     private

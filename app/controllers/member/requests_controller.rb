@@ -2,6 +2,11 @@ class Member::RequestsController < ApplicationController
 
 	before_action :authenticate_member!
 
+	def top
+		@request = Request.where(approval_status: 1)
+	    @requests = @request.all
+	end
+
 	def index
 		@requests = current_member.requests.page(params[:page]).per(15)
 	end

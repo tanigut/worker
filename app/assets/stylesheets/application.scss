@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
@@ -29,20 +30,27 @@
 	clear: both;
 }
 
-header {
-  background-color: #F5F5F5;
-  width: 100%;
-  padding: 15px 0;
-  margin: 0 auto;
-  text-align: center;
+a {
+  color:#000;
+  text-decoration:none;
 }
 
+//--------------------------------------------------------↓header--//
 
-header .headline {
+header {
+  background-color: Menu;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+}
+
+header .headerline {
   font-size: 32px;
 }
 
 .nav-list {
+  background-color: Menu;
   text-align: center;
   padding: 10px 0;
   margin: 0 auto;
@@ -60,6 +68,44 @@ header .headline {
 	font-family: 'M PLUS 1p', sans-serif;
 }
 
+//-------------------------------------------------------↑header--//
+//--------------------------------------------------------↓image--//
+
+.item_image_btn{
+    display: none;
+}#元の送信ボタンを隠す
+
+#img_field {
+  font-size: 25px;
+  font-style: inherit;
+  margin: 0 auto;
+  color: white;
+  background-color: #5bc0de;
+  border-radius: 5px;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
+//-------------------------------------------------------↑image--//
+//--------------------------------------------------------↓main--//
+
+.size {
+  font-size:2em;
+}
+
+.main-title {
+  margin: 30px auto;
+  border-bottom: 4px solid;
+  list-style: none;
+  display: flex;
+}
+
+//-------------------------------------------------------↑main--//
+//--------------------------------------------------------↓footer--//
+
+
 footer {
 	background-color: #FFFFFF;
 	width: 100%;
@@ -72,3 +118,40 @@ footer {
 	font-size: 16px;
 }
 
+//-------------------------------------------------------↑footer--//
+//--------------------------------------------------------↓form,submit size--//
+
+
+input[type="email"] {
+  width: 300px;
+  height: 40px;
+}
+
+input[type="text"] {
+  width: 300px;
+  height: 40px;
+}
+
+input[type="password"] {
+  width: 300px;
+  height: 40px;
+}
+
+input[type="submit"] {
+  width: 100px;
+  height: 40px;
+}
+
+//-------------------------------------------------------↑form,submit size--//
+//--------------------------------------------------------↓select size--//
+
+
+
+select::-ms-expand {
+  display: none;
+}
+select {
+  width: 200px;
+  height: 40px;
+  background-color: #F5F5F5;
+}

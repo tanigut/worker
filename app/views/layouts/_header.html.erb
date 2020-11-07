@@ -2,13 +2,23 @@
 <ul class="nav-list">
   <% if member_signed_in? %>
   <li class="nav-list-item">
+    <%= link_to "月間予定表", request_path(current_member) %>
+  </li>
+  <li class="nav-list-item">
     <%= link_to "マイページ", member_path(current_member) %>
   </li>
   <li class="nav-list-item">
-    <%= link_to "予約申請一覧", requests_path(current_member) %>
+    <%= link_to "イベント一覧", requests_path(current_member) %>
   </li>
   <li class="nav-list-item">
-    <%= link_to "管理者へ連絡", rooms_path %>
+    <% if Message.where(status: 1).count > 0 %>
+      <div style="color:red">
+      <%= link_to "管理者へ連絡", rooms_path %>
+      <%= Message.where(status: 1).count %>
+      </div>
+    <% else %>
+       <%= link_to "管理者へ連絡", rooms_path %>
+    <% end %>
   </li>
   <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
@@ -25,7 +35,14 @@
     <%= link_to "イベントジャンル一覧", admin_event_genres_path %>
   </li>
   <li class="nav-list-item">
-    <%= link_to "メッセージ", rooms_path(@member) %>
+    <% if Message.where(status: 0).count > 0 %>
+      <div style="color:red">
+      <%= link_to "メッセージ", rooms_path(@room) %>
+      <%= Message.where(status: 0).count %>
+      </div>
+    <% else %>
+      <%= link_to "メッセージ", rooms_path(@room) %>
+    <% end %>
   </li>
   <li class="nav-list-item">
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>

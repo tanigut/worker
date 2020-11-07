@@ -5,22 +5,33 @@ ja:
       request: リクエスト
       event_jenre: イベントジャンル
       admin: 管理者
-  attributes:
+    attributes:
       member:
         email: メールアドレス
         encrypted_password:
         name: 氏名
+        hurigana: フリガナ
         last_name: 姓
         first_name: 名
         last_name_kana: セイ
         first_name_kana: メイ
         company_name: 会社名
         is_deleted: 会員ステータス
+        password: パスワード
       admin:
         email: メールアドレス
         encrypted_password: パスワード
       event_jenre:
+        name: ジャンル名
       request:
+        title: イベント名
+        body: イベント詳細
+        chief_name: 責任者名
+        people: 人数
+        start_day: 開始開始日
+        finish_day: 終了予定日
+        event_day: イベント日
+        help: 協力会社
   enums:
       request:
         approval_status:

@@ -1,0 +1,7 @@
+
+<div id="message-form">
+<%= form_with(model:[room, message], remort: true)  do |f| %>
+  <%= f.text_field :content, :placeholder => "メッセージを入力"  %>
+  <%= f.submit :送信, class: "btn btn-success" %>
+<% end %>
+</div>

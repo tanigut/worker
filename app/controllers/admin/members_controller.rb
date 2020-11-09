@@ -3,11 +3,12 @@ class Admin::MembersController < ApplicationController
 	before_action :authenticate_admin!
 
 	def index
-		@members = Member.all
+		@members = Member.all.page(params[:page]).per(15)
 	end
 
-	def edit
-		@member = Member.find(params[:id])
+	def show
+		@member =  Member.find(params[:id])
+		@requests = @member.requests
 	end
 
 	def update
@@ -20,6 +21,7 @@ class Admin::MembersController < ApplicationController
 	end
 
     private
+
     def member_params
       params.require(:member).permit(:is_deleted)
     end

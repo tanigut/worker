@@ -1,0 +1,23 @@
+<% @page_title = "予約申請一覧" %>
+
+<div class="container">
+
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
+
+<br>
+
+<div class="text-right">
+<!--検索-->
+<%= render "admin/searches/form" %>
+<!--検索-->
+</div>
+
+</br>
+
+<%= render "body", requests: @requests %>
+
+<%= paginate @requests %>
+
+</div>

@@ -1,0 +1,85 @@
+<% @page_title = "予約申請一覧" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-calendar-plus size"><%= @page_title %></div>
+</div>
+
+<%= link_to '新規依頼する', new_request_path, class: 'btn btn-primary' %>
+
+<div class="text-right">
+<!--検索-->
+<%= render "member/searches/form" %>
+<!--検索-->
+</div>
+
+<br>
+
+<table class="table table-bordered">
+<thead>
+ <tr>
+  <th class="info">イベント予定日</th>
+  <th class="info">イベントジャンル</th>
+  <th class="info">イベント</th>
+  <th class="info">イベント詳細</th>
+  <th class="info">責任者</th>
+  <th class="info">人数</th>
+  <th class="info">協力会社</th>
+  <th class="info">状態</th>
+  <th class="info"></th>
+ </tr>
+</thead>
+
+<tbody>
+ <% @requests.each do |request| %>
+ <tr>
+  <td>
+      <% if request.start_day.present? && request.finish_day.present? %>
+      <%= request.start_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
+      <span>〜</span>
+      <%= request.finish_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
+      <% end %>
+  </td>
+  <td><%= request.event_genre.name %></td>
+  <td><%= request.title %></td>
+  <td><%= request.body %></td>
+  <td><%= request.chief_name %></td>
+  <td><%= request.people %></td>
+  <td><%= request.help %></td>
+  <td><%= request.approval_status_i18n %></td>
+ <!--承認ステータスが否認の場合-->
+ <% if request.approval_status == "denial" %>
+  <td>
+      <%= link_to '編集', edit_request_path(request), class: 'btn-sm btn-primary' %>
+      <%= link_to '削除', request_path(request), class: 'btn-sm btn-danger', method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  </td>
+ <!--承認ステータスが否認の場合-->
+
+ <!--承認ステータスが承認の場合-->
+ <% elsif request.approval_status == "approval" %>
+  <td>
+      <%= link_to '報告する', new_request_report_path(request), class: 'btn-sm btn-success' %>
+  </td>
+ <!--承認ステータスが承認の場合-->
+
+ <!--承認ステータスが終了の場合-->
+ <% elsif request.approval_status == "finish" %>
+  <td>
+      <%= link_to '報告詳細', request_report_path(request, request.report), class: 'btn-sm btn-info' %>
+  </td>
+ <!--承認ステータスが終了の場合-->
+
+ <!--承認ステータスが対応中の場合-->
+ <% else %>
+  <td></td>
+ <% end %>
+ <!--承認ステータスが対応中の場合-->
+ </tr>
+ <% end %>
+</tbody>
+</table>
+
+<%= paginate @requests %>
+
+</div>

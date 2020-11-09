@@ -1,0 +1,41 @@
+ja:
+  activerecord:
+    models:
+      member: 会員情報
+      request: リクエスト
+      event_jenre: イベントジャンル
+      admin: 管理者
+    attributes:
+      member:
+        name: 氏名
+        hurigana: フリガナ
+        last_name: 姓
+        first_name: 名
+        last_name_kana: セイ
+        first_name_kana: メイ
+        company_name: 会社名
+        is_deleted: 会員ステータス
+        email: メールアドレス
+        password: パスワード
+        encrypted_password: パスワード(確認用)
+      admin:
+        email: メールアドレス
+        encrypted_password: パスワード
+      event_jenre:
+        name: ジャンル名
+      request:
+        title: イベント名
+        body: イベント詳細
+        chief_name: 責任者名
+        people: 人数
+        start_day: 開始開始日
+        finish_day: 終了予定日
+        event_day: イベント日
+        help: 協力会社
+  enums:
+      request:
+        approval_status:
+          responding: "対応中"
+          approval: "承認"
+          denial: "否認"
+          finish: "終了"

@@ -1,0 +1,63 @@
+<% @page_title = "予約申請詳細" %>
+
+<div class="container">
+
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
+
+<br>
+<br>
+
+<div class="field row">
+<%= form_with :model => @request, url:admin_request_path(@request), method: :patch, local: true  do |f| %>
+  <%= f.select :approval_status, Request.approval_statuses.keys.map {|k| [I18n.t("enums.request.approval_status.#{k}"), k]} %>
+  <%= f.submit "更新", class: "btn btn-success" %>
+</div>
+<% end %>
+
+<br>
+
+<table class="table table-bordered">
+<thead>
+ <tr>
+  <th class="info">会員ID</th>
+  <th class="info">イベント日</th>
+  <th class="info">イベントジャンル</th>
+  <th class="info">イベント</th>
+  <th class="info">イベント詳細</th>
+  <th class="info">責任者</th>
+  <th class="info">人数</th>
+  <th class="info">協力会社</th>
+  <th class="info">状態</th>
+  <% if @request.approval_status == "finish" %>
+  <th class="info"></th>
+  <% end %>
+ </tr>
+</thead>
+
+<tbody>
+ <tr>
+  <td><%= @request.member_id %></td>
+  <td>
+      <%= @request.start_day.strftime("%Y年%m月%d日 %H:%M") %>
+      <span>~</span>
+      <%= @request.finish_day.strftime("%Y年%m月%d日 %H:%M") %>
+  </td>
+  <td><%= @request.event_genre.name %></td>
+  <td><%= @request.title %></td>
+  <td><%= @request.body %></td>
+  <td><%= @request.chief_name %></td>
+  <td><%= @request.people %></td>
+  <td><%= @request.help %></td>
+  <td><%= @request.approval_status_i18n %></td>
+  <% if @request.approval_status == "finish" %>
+  <td><%= link_to '報告を見る', admin_request_report_path(@request), class: 'btn-sm btn-primary' %></td>
+  <% end %>
+ </tr>
+</tbody>
+</table>
+
+<%= button_to '戻る', :back, class: 'btn btn-primary', method: :get  %>
+
+</div>

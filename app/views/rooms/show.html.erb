@@ -1,0 +1,59 @@
+<% @page_title = "チャットページ" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
+
+<% if member_signed_in? %>
+  <h3>管理者とのチャットルーム</h3>
+    <% @messages.each do |f| %>
+      <!-- メッセージがMemberによるものだったら -->
+      <% if f.is_member %>
+        <!-- メッセージを右に寄せる -->
+        <div class="text-right">
+          <h4><%= f.content %></h4>
+        </div>
+        <br>
+      <!-- メッセージがAdminによるものだったら -->
+      <% else %>
+        <!-- メッセージを左に寄せる -->
+        <div class="text-left">
+          <p>管理者</p>
+          <h4><%= f.content %></h4>
+        </div>
+        <br>
+      <% end %>
+    <% end %>
+<% elsif admin_signed_in?%>
+  <h3><%= @member.full_name %>さんとのチャットルーム</h3>
+  <div class="chat-field">
+    <% @messages.each do |f| %>
+      <!-- メッセージがMemberによるものだったら -->
+      <% if f.is_member %>
+        <!-- メッセージを左に寄せる -->
+        <div class="text-left">
+          <p>会員：<%= @member.full_name %></p>
+          <h4><%= f.content %></h4>
+        </div>
+        <br>
+      <!-- メッセージがAdminによるものだったら -->
+      <% else %>
+        <!-- メッセージを右に寄せる -->
+        <div class="text-right">
+          <h4><%= f.content %></h4>
+        </div>
+        <br>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="text-center">
+<%= render "form", room: @room, message: @message %>
+</div>
+
+<br>
+
+</div>

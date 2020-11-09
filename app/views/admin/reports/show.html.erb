@@ -1,0 +1,35 @@
+<% @page_title = "報告詳細" %>
+
+<div class="container">
+
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
+
+<table class="table table-bordered">
+<thead>
+ <tr>
+  <th class="info">予約ID</th>
+  <th class="info">責任者</th>
+  <th class="info">開始時刻</th>
+  <th class="info">終了時刻</th>
+  <th class="info">作業時間</th>
+  <th class="info">作業画像</th>
+  <th class="info">作業内容</th>
+ </tr>
+</thead>
+
+<tbody>
+ <tr>
+  <td><%= @request.id %></td>
+  <td><%= @request.chief_name %></td>
+  <td><%= @request.report.in_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+  <td><%= @request.report.out_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+  <td><%= ((@request.report.out_at - @request.report.in_at)/60.round(1)).ceil.to_s %><span>分</span></td>
+  <td><%= attachment_image_tag @report, :image, :fill, 100, 100, format: 'jpeg' %></td>
+  <td><%= @report.body %></td>
+ </tr>
+</tbody>
+</table>
+
+</div>

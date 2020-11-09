@@ -2,19 +2,17 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
-
-<%= form_with :model => @genre, url:admin_event_genres_path, method: :post, local: true  do |f| %>
-<div class="field row">
-  <%= f.label :ジャンル名 %><br />
-  <%= f.text_field :name %>
-  <%= f.label :is_active, "有効", {is_active: :true} %>
-  <%= f.radio_button :is_active, true %>
-  <%= f.label :is_active, "無効", {is_active: :false} %>
-  <%= f.radio_button :is_active, false %>
-  <%= f.submit :登録する, class: "btn btn-success" %>
+<div class="main-title">
+  <h2><%= @page_title %></h2>
 </div>
-<% end %>
+
+
+<%= render "layouts/error_messages", model: @genre %>
+
+
+<div id="genre">
+ <%= render "form", genre: @genre %>
+</div>
 
 <br>
 
@@ -39,5 +37,8 @@
  <% end %>
 </tbody>
 </table>
+
+
+<%= paginate @genres %>
 
 </div>

@@ -1,0 +1,37 @@
+<table class="table table-bordered">
+<thead>
+ <tr>
+  <th class="info">イベント日</th>
+  <th class="info">イベントジャンル</th>
+  <th class="info">イベント</th>
+  <th class="info">イベント詳細</th>
+  <th class="info">責任者</th>
+  <th class="info">人数</th>
+  <th class="info">協力会社</th>
+  <th class="info">状態</th>
+  <th class="info"></th>
+ </tr>
+</thead>
+
+<tbody>
+ <% requests.each do |request| %>
+ <tr>
+  <td>
+      <%= request.start_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
+      <span>~</span>
+      <%= request.finish_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
+  </td>
+  <td><%= request.event_genre.name %></td>
+  <td><%= request.title %></td>
+  <td><%= request.body %></td>
+  <td><%= request.chief_name %></td>
+  <td><%= request.people %></td>
+  <td><%= request.help %></td>
+  <td><%= request.approval_status_i18n %></td>
+  <td>
+      <%= link_to '詳細', edit_admin_request_path(request), class: 'btn-sm btn-primary' %>
+  </td>
+ </tr>
+ <% end %>
+</tbody>
+</table>

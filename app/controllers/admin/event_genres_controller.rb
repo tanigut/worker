@@ -10,7 +10,7 @@ class Admin::EventGenresController < ApplicationController
 	def create
 		@genre = EventGenre.new(genre_params)
 		if @genre.save
-		   redirect_to admin_event_genres_path
+		   redirect_to admin_event_genres_path, notice: "イベントジャンルを登録しました。"
 		else
 		   @genres = EventGenre.all
 		   render :index
@@ -24,7 +24,7 @@ class Admin::EventGenresController < ApplicationController
 	def update
 		@genre = EventGenre.find(params[:id])
 		if @genre.update(genre_params)
-		   redirect_to admin_event_genres_path
+		   redirect_to admin_event_genres_path, notice: "イベントジャンルを更新しました。"
 		else
 		   render :edit
 		end

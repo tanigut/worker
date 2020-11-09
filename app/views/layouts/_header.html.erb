@@ -2,20 +2,25 @@
 <ul class="nav-list">
   <% if member_signed_in? %>
   <li class="nav-list-item">
-    <%= link_to "月間予定表", request_path(current_member) %>
+    <%= link_to "月間予定表", toppage_path %>
   </li>
   <li class="nav-list-item">
-    <%= link_to "マイページ", member_path(current_member) %>
+    <%= link_to "マイページ", member_path %>
   </li>
   <li class="nav-list-item">
-    <%= link_to "イベント一覧", requests_path(current_member) %>
+    <%= link_to "イベント一覧", requests_path %>
   </li>
   <li class="nav-list-item">
-    <% if Message.where(status: 1).count > 0 %>
+    <%# if Message.where(status: 1).where(admin_id: admin.id).count > 0 %>
+      <%#= link_to "管理者へ連絡", rooms_path %>
+      <% rooms = current_member.rooms %>
+      <% if rooms.eager_load(:messages).where("messages.status = '1'").count > 0 %>
       <div style="color:red">
-      <%= link_to "管理者へ連絡", rooms_path %>
-      <%= Message.where(status: 1).count %>
+        <p>new</p>
+      <%#= @rooms.pluck(:admin_id).select{ |id| id == admin.id }.count %>
+      <%#= Message.where(status: 1).count %>
       </div>
+      <%= link_to "管理者へ連絡", rooms_path %>
     <% else %>
        <%= link_to "管理者へ連絡", rooms_path %>
     <% end %>
@@ -29,6 +34,11 @@
     <%= link_to "会員一覧", admin_members_path %>
   </li>
   <li class="nav-list-item">
+    <% if Request.where(approval_status: 1).count > 0 %>
+    <div style="color:red">
+        <p>new</p>
+    </div>
+    <% end %>
     <%= link_to "予約申請一覧", admin_requests_path %>
   </li>
   <li class="nav-list-item">

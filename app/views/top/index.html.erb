@@ -2,10 +2,33 @@
 
 <div class="container">
 
-<div class="text-center">
+<section id= "feature">
+  <h2 class= "heading">都市化によるファシリティ管理</h2>
+    <p class= "heading-text">
+     Worker はファシリティの利用者が円滑に連絡を取るための管理システムです。
+    </p>
+  <div class="strength-group clearfix">
+   <div class="strength">
+    <i class="fas fa-check-square" aria-hidden="true"></i>
+    <h3 class="strength-title">イベントの予約及び報告システム</h3>
+   </div>
+   <div class="strength">
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <h3 class="strength-title">共通カレンダーで計画管理</h3>
+   </div>
+   <div class="strength">
+    <i class="fas fa-comment-alt" aria-hidden="true"></i>
+    <h3 class="strength-title">管理者と利用者との連絡手段</h3>
+   </div>
+  </div>
+  <%= button_to "Workerへログイン", new_member_session_path, class: "btn btn-success", method: :get %>
+  <br>
+  <%= button_to "このサイトについて", about_path, class: "btn btn-warning", method: :get %>
+  <br>
+  <%= button_to 'ゲストログイン（閲覧用）', top_guest_sign_in_path, method: :post %>
 
-<%= link_to "Workerへログイン", new_member_session_path, class: "btn btn-success btn-lg" %>
 </div>
+</section>
 
 
 </div>

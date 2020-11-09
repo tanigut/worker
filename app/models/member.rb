@@ -8,10 +8,10 @@ class Member < ApplicationRecord
   has_many :reports
   has_many :rooms
 
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true
-  validates :first_name_kana, presence: true
+  validates :last_name,
+            :first_name,
+            :last_name_kana,
+            :first_name_kana, presence: true
   validates :company_name, presence: true, uniqueness: true
 
 

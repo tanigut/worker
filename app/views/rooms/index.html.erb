@@ -8,43 +8,33 @@
   </div>
 </div>
 
+<% if member_signed_in? %>
+  <div class="text-center">
+   <% @admins.each do |admin| %>
+    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+    <% if @admin_ids.include?(admin.id) %>
+        <h3 style="color:green">新規メッセージ
+        <%= @rooms.pluck(:admin_id).select{ |id| id == admin.id }.count %>
+        </h3>
+        <%= button_to "チャット", room_path(current_member.rooms.find_by(admin_id: admin.id)), class: 'btn btn-primary', method: :get %>
+   <% else %>
+    <%= button_to "新規", rooms_path(room: { admin_id: admin.id }), class: 'btn btn-success', method: :post %>
+   <% end %>
+   <% end %>
+ </div>
+
+<% elsif admin_signed_in? %>
 <table class="table table-bordered">
 <thead>
- <% if member_signed_in? %>
- <tr>
-   <th class="info"></th>
-   <th class="info"></th>
- </tr>
- <% elsif admin_signed_in? %>
  <tr>
    <th class="info">会員id</th>
    <th class="info">名前</th>
    <th class="info">会社名</th>
    <th class="info"></th>
  </tr>
- <% end %>
 </thead>
 
 <tbody>
-   <!--Memberでログインしてたら-->
-   <% if member_signed_in? %>
-   <% @admins.each do |admin| %>
-   <tr>
-    <td><h4>管理者</h4></td>
-    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
-    <% if @admin_ids.include?(admin.id) %>
-    <td>
-        <%= button_to "チャットへ", room_path(current_member.rooms.find_by(admin_id: admin.id)), method: :get %>
-        <%= @rooms.pluck(:admin_id).select{ |id| id == admin.id }.count %>
-    </td>
-   <% else %>
-    <td><%= button_to "新規", rooms_path(room: { admin_id: admin.id }) %></td>
-   </tr>
-   <% end %>
-   <% end %>
-
-   <!--Adminでログインしてたら-->
-   <% elsif admin_signed_in? %>
    <% @members.each do |member| %>
    <tr>
     <td><%= member.id %></td>
@@ -53,19 +43,20 @@
     <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
     <% if @member_ids.include?(member.id) %>
     <td>
-        <%= button_to "チャットへ", room_path(current_admin.rooms.find_by(member_id: member.id)), method: :get %>
         <h3 style="color:green">
+        <%= button_to "チャット", room_path(current_admin.rooms.find_by(member_id: member.id)), class: 'btn btn-primary', method: :get %>
           <%= @rooms.pluck(:member_id).select{ |id| id == member.id }.count %>
         </h3>
     </td>
     <% else %>
-    <td><%= button_to "新規",rooms_path(room: {member_id: member.id}) %></td>
+    <td><%= button_to "新規",rooms_path(room: {member_id: member.id}), class: 'btn btn-success', method: :post %></td>
     <% end %>
    </tr>
    <% end %>
-   <% end %>
 </tbody>
 </table>
+
+<% end %>
 
 <% if admin_signed_in? %>
 <%= paginate @members %>

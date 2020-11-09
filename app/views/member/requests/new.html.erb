@@ -8,6 +8,8 @@
 
 <div class="text-center">
 
+<%= render "layouts/error_messages", model: @request %>
+
 <%= form_with :model => @request, url:requests_path(@request), method: :post, local: true  do |f| %>
 <div class="field row">
   <%= f.collection_select(:event_genre_id, @genres, :id, :name, prompt: "--選択してください--") %>

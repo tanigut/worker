@@ -51,10 +51,7 @@
 <% end %>
 
 <div class="text-center">
-<%= form_with(model:[@room, @message], local: true)  do |f| %>
-  <%= f.text_field :content, :placeholder => "メッセージを入力"  %>
-  <%= f.submit :送信, class: "btn btn-success" %>
-<% end %>
+<%= render "form", room: @room, message: @message %>
 </div>
 
 <br>

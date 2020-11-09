@@ -42,11 +42,7 @@ header {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-  display: inline-block;
-}
-
-header .headerline {
-  font-size: 32px;
+  position: fixed;
 }
 
 .nav-list {
@@ -73,7 +69,7 @@ header .headerline {
 
 .item_image_btn{
     display: none;
-}#元の送信ボタンを隠す
+}
 
 #img_field {
   font-size: 25px;
@@ -91,16 +87,80 @@ header .headerline {
 //-------------------------------------------------------↑image--//
 //--------------------------------------------------------↓main--//
 
+main {
+  height: auto;
+  margin: 0 auto;
+  padding-top: 150px;
+  width: 100%;
+}
+
+
 .size {
   font-size:2em;
 }
 
 .main-title {
   margin: 30px auto;
-  border-bottom: 4px solid;
+  border-bottom: 1px solid gray;
   list-style: none;
   display: flex;
 }
+
+//↓about_page--//
+
+.heading{
+  padding-top: 90px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 32px;
+}
+
+.heading::after{
+  content: "";
+  display: block;
+  width: 150px;
+  height: 3px;
+  margin: 8px auto 0 auto;
+  background-color: #FFA500;
+}
+
+.heading-text{
+  padding-top: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+#feature {
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.strength-group{
+  width: 980px;
+  padding: 30px 0 90px 0;
+  margin: 0 auto;
+}
+
+.strength{
+  float: left;
+  width: 320px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 60px;
+}
+
+.strength:last-child{
+  margin-right: 0;
+}
+
+.strength-title{
+  padding: 10px 0;
+  font-size: 20px;
+}
+
+//↑about_page--//
+
 
 //-------------------------------------------------------↑main--//
 //--------------------------------------------------------↓footer--//
@@ -109,6 +169,7 @@ header .headerline {
 footer {
 	background-color: #FFFFFF;
 	width: 100%;
+  margin: 30px auto;
 	text-align: center;
 }
 
@@ -138,14 +199,12 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-  width: 100px;
+  width: 300px;
   height: 40px;
 }
 
 //-------------------------------------------------------↑form,submit size--//
 //--------------------------------------------------------↓select size--//
-
-
 
 select::-ms-expand {
   display: none;
@@ -155,3 +214,68 @@ select {
   height: 40px;
   background-color: #F5F5F5;
 }
+
+//-------------------------------------------------------↑select size--//
+//--------------------------------------------------------↓responsive--//
+
+@media screen and (max-width:768px) {
+
+  .nav-list {
+    width: 100%;
+  }
+  .nav-list-item {
+    width: 100%;
+    margin: 0 0 10px 0;
+  }
+
+  main {
+  padding-top: 300px;
+  width: 100%;
+  }
+
+  #feature {
+    padding: 0 5%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .strength-group {
+    width: 320px;
+  }
+
+  .strength {
+    float: none;
+    margin-top: 10px;
+  }
+
+  .strength:first-child{
+    margin-top: 0;
+  }
+
+  footer {
+  width: 100%;
+  }
+
+  .footer-container {
+  width: 100%;
+  }
+
+  input[type="email"] {
+  width: 150px;
+  }
+
+  input[type="text"] {
+    width: 150px;
+  }
+
+  input[type="password"] {
+    width: 150px;
+  }
+
+  input[type="submit"] {
+    width: 150px;
+  }
+
+}
+
+

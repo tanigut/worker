@@ -7,8 +7,6 @@ ja:
       admin: 管理者
     attributes:
       member:
-        email: メールアドレス
-        encrypted_password:
         name: 氏名
         hurigana: フリガナ
         last_name: 姓
@@ -17,7 +15,9 @@ ja:
         first_name_kana: メイ
         company_name: 会社名
         is_deleted: 会員ステータス
+        email: メールアドレス
         password: パスワード
+        encrypted_password: パスワード(確認用)
       admin:
         email: メールアドレス
         encrypted_password: パスワード

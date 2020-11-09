@@ -27,7 +27,7 @@ class Devise::Members::SessionsController < Devise::SessionsController
 
   #ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
-    request_path
+    toppage_path
   end
 
   #ログアウト後のリダイレクト先

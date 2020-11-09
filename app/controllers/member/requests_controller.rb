@@ -21,7 +21,7 @@ class Member::RequestsController < ApplicationController
 		@request.member_id = current_member.id
 		@genres = EventGenre.where(is_active: true)
 		if @request.save
-		   redirect_to requests_path(current_member.id)
+		   redirect_to requests_path(current_member.id), notice: "リクエストを送信しました。"
 		else
 		   render :new
 		end
@@ -37,7 +37,7 @@ class Member::RequestsController < ApplicationController
 		@genres = EventGenre.where(is_active: true)
 		@request.approval_status = 0
 		if @request.update(request_params)
-		   redirect_to requests_path(@request)
+		   redirect_to requests_path, notice: "リクエストを再送信しました。"
 		else
 		   render :edit
 		end
@@ -46,7 +46,7 @@ class Member::RequestsController < ApplicationController
 	def destroy
 		@request = Request.find(params[:id])
 		@request.destroy
-        redirect_to requests_path
+        redirect_to requests_path, notice: "削除しました。"
     end
 
 	private

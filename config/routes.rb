@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root "top#index"
   get "about" => "top#about", as: "about"
+  get "membertop" => "requests#top", as: "top"
+  post "/top/guest_sign_in", to: "top#new_guest"
 
   devise_for :admins,
   controllers: {
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :member do
-    get "request" => "requests#top"
+    get 'requests/toppage' => 'requests#top', as: 'toppage'
     get "search" => "searches#search"
     resource :member, only:[:show, :edit, :create, :update]
     resources :requests, only:[:index, :new, :create, :edit, :update, :destroy] do

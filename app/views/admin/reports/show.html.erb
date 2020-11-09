@@ -25,7 +25,7 @@
   <td><%= @request.chief_name %></td>
   <td><%= @request.report.in_at.strftime("%Y年%m月%d日 %H:%M") %></td>
   <td><%= @request.report.out_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-  <td><%= @request.report.out_at - @request.report.in_at %></td>
+  <td><%= ((@request.report.out_at - @request.report.in_at)/60.round(1)).ceil.to_s %><span>分</span></td>
   <td><%= attachment_image_tag @report, :image, :fill, 100, 100, format: 'jpeg' %></td>
   <td><%= @report.body %></td>
  </tr>

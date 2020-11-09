@@ -1,0 +1,33 @@
+<% @page_title = "会員マイページ" %>
+
+<div class="container">
+
+<h2><%= @page_title %></h2>
+
+<table class="table table-bordered">
+<thead>
+ <tr>
+  <th class="info">会員id</th>
+  <th class="info">名前</th>
+  <th class="info">メールアドレス</th>
+  <th class="info">会社名</th>
+  <th class="info"></th>
+ </tr>
+</thead>
+
+<tbody>
+ <tr>
+  <td><%= @member.id %></td>
+  <td><%= @member.last_name_kana %><%= @member.first_name_kana %><br>
+      <%= @member.last_name %><%= @member.first_name %>
+  </td>
+  <td><%= @member.email %></td>
+  <td><%= @member.company_name %></td>
+  <td>
+      <%= link_to '編集する', edit_member_path(@member), class: 'btn-sm btn-primary' %>
+  </td>
+ </tr>
+</tbody>
+</table>
+
+</div>

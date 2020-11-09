@@ -1,0 +1,7 @@
+<% if @genre.errors.any? %>
+  $('#errors').html("<%= j(render 'layouts/error_messages', genre: @genre) %>");
+
+<% else %>
+
+  $('#genre').html("<%= j(render 'form', genre: @genre) %>");
+<% end %>

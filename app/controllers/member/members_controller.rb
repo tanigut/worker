@@ -13,7 +13,7 @@ class Member::MembersController < ApplicationController
 	def update
 		@member = current_member
 		if @member.update(member_params)
-		   redirect_to member_path
+		   redirect_to member_path, notice: "会員情報を更新しました。"
 		else
 		   render :edit
 		end

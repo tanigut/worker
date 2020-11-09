@@ -2,18 +2,15 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
-
-<br>
-
-<%= link_to '戻る', admin_requests_path, class: 'btn btn-primary' %>
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
 
 <br>
 <br>
-
-<%= form_with :model => @request, url:admin_request_path(@request), method: :patch, local: true  do |f| %>
 
 <div class="field row">
+<%= form_with :model => @request, url:admin_request_path(@request), method: :patch, local: true  do |f| %>
   <%= f.select :approval_status, Request.approval_statuses.keys.map {|k| [I18n.t("enums.request.approval_status.#{k}"), k]} %>
   <%= f.submit "更新", class: "btn btn-success" %>
 </div>
@@ -60,5 +57,7 @@
  </tr>
 </tbody>
 </table>
+
+<%= button_to '戻る', :back, class: 'btn btn-primary', method: :get  %>
 
 </div>

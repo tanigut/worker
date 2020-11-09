@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= @page_title %></title>
+    <title><%= page_title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/<%= ENV['KIT_CODE'] %>.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -14,40 +17,56 @@
     <header>
       <div class="header-container clearfix">
 
+      <!--管理者がログイン-->
       <% if admin_signed_in? %>
         <%= link_to admin_root_path do %>
         <h1>Worker</h1>
-      <% end %>
+        <% end %>
+      <!--管理者がログイン-->
 
+      <!--会員がログイン-->
       <% elsif member_signed_in? %>
         <%= link_to root_path do %>
         <h1>Worker</h1>
         <% end %>
+        <p>ログイン：<%= current_member.last_name %>さん</p>
 
+      <!--会員がログイン-->
+
+      <!--ゲスト-->
       <% else %>
         <%= link_to root_path do %>
         <h1>Worker</h1>
         <% end %>
+      <!--ゲスト-->
 
       <% end %>
 
       </div>
+
+      <% unless current_page?(root_path) %>
+      <nav>
+        <%= render "layouts/header" %>
+      </nav>
+      <% end %>
     </header>
-    <nav>
-      <%= render "layouts/header" %>
-    </nav>
 
     <main>
-    <div class="main clearfix">
-      <%= yield %>
-    </div>
+      <div class="main clearfix">
+      <% if flash.notice %>
+          <h3 class="notice"><%= flash.notice %></h3>
+      <% end %>
+        <%= yield %>
+      </div>
     </main>
 
+    <% unless current_page?(root_path) %>
     <footer>
     <div class="footer-container clearfix">
       <%= render "layouts/footer" %>
     </div>
     </footer>
+    <% end %>
 
 
   </body>

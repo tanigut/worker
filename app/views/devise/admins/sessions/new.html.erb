@@ -1,34 +1,30 @@
 <% @page_title = "管理者ログインページ" %>
 <div class="container">
+<div class="text-center">
 
 <h2>管理者ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field"><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "ご登録のメールアドレス" %>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="field"><br />
+    <%= f.password_field :password, autocomplete: "current-password", :placeholder => "パスワード" %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
+  <% if devise_mapping.rememberable? %><br />
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%#= f.check_box :remember_me %>
+      <%#= f.label :remember_me %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "ログインする" %>
+    <%= f.submit "ログイン", class: 'btn btn-success' %>
   </div>
 <% end %>
 
-<h2>admins@example.com</h2>
-
-<h2>admins</h2>
-
-<%= render "devise/admins/shared/links" %>
+<%#= render "devise/admins/shared/links" %>
+</div>
 </div>

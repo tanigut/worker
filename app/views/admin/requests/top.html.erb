@@ -2,9 +2,28 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-title">
+  <h2><%= @page_title %></h2>
+</div>
 
-<h1>予約依頼数</h1>
-<h2>予約依頼<%= @request.count %>件</h2>
+<h1>予約依頼数<%= @request.count %>件</h1>
+
+<%= month_calendar(attribute: :start_day, events: @requests, number_of_weeks: 2) do |date, requests| %>
+  <%= date.day %>
+  <% requests.each do |request| %>
+    <div>
+      <%#= request.title %>
+      <span>・</span>
+      <%= link_to edit_admin_request_path(request) do %>
+        <%= request.title %>
+      <% end %>
+      <%= request.start_day.strftime("%H:%M") %>
+      <span>〜</span>
+      <%= request.finish_day.strftime("%H:%M") %>
+      <br>
+    </div>
+  <% end %>
+<% end %>
+
 
 </div>

@@ -1,0 +1,41 @@
+<!-- 入館時刻(in_at)が空の場合 -->
+  <% if report.in_at.nil? %>
+    <%= form_with(model:[request,report], remort: true) do |f| %>
+    <%= f.hidden_field :in_at, value: now %>
+    <div class="actions row"><br />
+      <%= f.submit :開始, class: "btn btn-success" %>
+    </div>
+    <% end %>
+  <!-- 入館時刻(in_at)が空の場合 -->
+
+  <!-- 退館時刻(out_at)が空の場合 -->
+  <% elsif report.out_at.nil? %>
+    <%= form_with(model:[request,report], remort: true) do |f| %>
+    <div class="image_wrapper">
+     <div class="item_image_btn">
+      <%#= f.attachment_field :image, class: 'img_field', style: 'display:none;' %>
+      <%#= f.attachment_field :image %>
+      <%= f.attachment_field :image, id: "file" %>
+     </div>
+    </div>
+    <div id="img_field" onClick="$('#file').click()" ><br />
+      <h4>ダブルクリックして画像選択</h4>
+    </div>
+
+    <div class="field row"><br />
+      <%= f.text_area :body, :size => "70x10", :placeholder => "作業内容を記載してください" %>
+    </div>
+
+    <%= f.hidden_field :out_at, value: now %>
+
+    <div class="actions row"><br />
+      <%= f.submit :終了する, class: "btn btn-success" %>
+    </div>
+    <% end %>
+    <!-- 退館時刻(out_at)が空の場合 -->
+
+  <!-- 作業終了時 -->
+  <% else %>
+    <h3>お疲れ様でした。</h3>
+  <% end %>
+  <!-- 作業終了時 -->

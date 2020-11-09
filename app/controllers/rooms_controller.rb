@@ -3,11 +3,12 @@ class RoomsController < ApplicationController
   def index
       @room = Room.new
   	  if member_signed_in?
-         #@room = member.rooms.build(room_admin_params)
-         @new = Message.where(status: 1)
-         @count = @new.count
          @admins = Admin.all
          rooms = current_member.rooms
+         @new_messages = Message.where(status: 1)
+         @admins = Admin.all
+         rooms = current_member.rooms
+         @rooms = rooms.eager_load(:messages).where("messages.status = '1'")
          #自分が入ってるroomの相手のidを格納する
          @admin_ids = []
          rooms.each do |f|
@@ -15,11 +16,10 @@ class RoomsController < ApplicationController
          end
 
       elsif admin_signed_in?
-          #@room = admin.rooms.build(room_member_params)
-          @new = Message.where(status: 0)
-          @count = @new.count
+          @new_messages = Message.where(status: 0)
           @members = Member.all.page(params[:page]).per(15)
           rooms = current_admin.rooms
+          @rooms = rooms.eager_load(:messages).where("messages.status = '0'")
           #自分が入ってるroomの相手のidを格納する
           @member_ids = []
           rooms.each do |f|
@@ -35,7 +35,8 @@ class RoomsController < ApplicationController
       if member_signed_in?
         if @room.member.id == current_member.id
            @admin = @room.admin
-           @messages.update(status: "saw")
+           @new_message = @messages.where(status: 1)
+           @new_message.update(status: "saw")
         else
            redirect_to rooms_path
         end
@@ -43,7 +44,8 @@ class RoomsController < ApplicationController
       elsif admin_signed_in?
         if @room.admin.id == current_admin.id
            @member = @room.member
-           @messages.update(status: "saw")
+           @new_message = @messages.where(status: 0)
+           @new_message.update(status: "saw")
         else
            redirect_to rooms_path
         end

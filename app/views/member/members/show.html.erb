@@ -2,32 +2,38 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
 
-<table class="table table-bordered">
-<thead>
- <tr>
-  <th class="info">会員id</th>
-  <th class="info">名前</th>
-  <th class="info">メールアドレス</th>
-  <th class="info">会社名</th>
-  <th class="info"></th>
- </tr>
-</thead>
+<div class="main-body">
+<h4>会員情報</h4>
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>会員ID</th>
+    <td><%= @member.id %></td>
+  </tr>
 
-<tbody>
- <tr>
-  <td><%= @member.id %></td>
-  <td><%= @member.last_name_kana %><%= @member.first_name_kana %><br>
-      <%= @member.last_name %><%= @member.first_name %>
-  </td>
-  <td><%= @member.email %></td>
-  <td><%= @member.company_name %></td>
-  <td>
-      <%= link_to '編集する', edit_member_path(@member), class: 'btn-sm btn-primary' %>
-  </td>
- </tr>
-</tbody>
+  <tr>
+    <th>氏名</th>
+    <td><%= @member.full_name_kana %><br>
+        <%= @member.full_name %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @member.email %></td>
+  </tr>
+
+  <tr>
+    <th>会社名</th>
+    <td><%= @member.company_name %></td>
+  </tr>
+
 </table>
+
+  <%= button_to '編集', edit_member_path(@member), class: 'btn-sm btn-primary', method: :get %>
+</div>
 
 </div>

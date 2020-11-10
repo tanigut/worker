@@ -1,3 +1,9 @@
+
+<% if member_signed_in? || admin_signed_in? %>
+<h4>Worker 2020 | Taniguchi<h4>
+
+<% else %>
 <%= link_to "このサイトについて", :about %> |
 Taniguchi
 2020
+<% end %>

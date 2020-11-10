@@ -1,0 +1,59 @@
+<% @page_title = "予約申請編集" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-edit size"><%= @page_title %></div>
+</div>
+
+<div class="text-center">
+
+<%= render "layouts/error_messages", model: @request %>
+
+<%= form_with :model => @request, url:request_path(@request), method: :patch, local: true  do |f| %>
+<div class="field row">
+  <%= f.collection_select(:event_genre_id, @genres, :id, :name, prompt: "--選択してください--") %>
+</div>
+
+<div class="field row">
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
+</div>
+
+<div class="field row">
+  <%= f.label :body %><br />
+  <%= f.text_field :body %>
+</div>
+
+<div class="field row">
+  <%= f.label :イベント日 %><br />
+  <%= f.datetime_field :start_day %>
+  <%= f.datetime_field :finish_day %>
+</div>
+
+<div class="field row">
+  <%= f.label :chief_name %><br />
+  <%= f.text_field :chief_name %>
+</div>
+
+<div class="field row">
+  <%= f.label :people %><br />
+  <%= f.text_field :people %>
+</div>
+
+<div class="field row">
+  <%= f.label :help %><br />
+  <%= f.text_field :help %>
+</div>
+
+<div class="actions row"><br />
+  <%= f.submit :更新, class: "btn btn-success" %>
+</div>
+<% end %>
+
+<div class="actions row"><br />
+  <%= button_to '削除', request_path(@request), class: 'btn btn-danger', method: :delete, "data-confirm" => "本当に削除しますか？" %>
+</div>
+
+</div>
+</div>

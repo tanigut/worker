@@ -1,0 +1,38 @@
+<% @page_title = "報告ページ" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
+
+<%= render "body", report: @report, request: @request %>
+
+<div class="text-center">
+
+<!-- 現在時間を表示　-->
+<div class="now-time">
+<h1>現在時刻</h1>
+<h2 id="time"></h2>
+<script>
+  time();
+  function time(){
+      var now = new Date();
+      document.getElementById("time").innerHTML = now.toLocaleTimeString();
+  }
+  setInterval('time()',1000);
+</script>
+</div>
+<!-- 現在時間を表示　-->
+
+<br>
+<br>
+<br>
+
+<%= render "form", report: @report, request: @request, now: @now %>
+
+</div>
+
+<br>
+
+</div>

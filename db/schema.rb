@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_22_063113) do
+ActiveRecord::Schema.define(version: 2020_11_03_102417) do
+
+  create_table "Messages", force: :cascade do |t|
+    t.integer "room_id"
+    t.boolean "is_member"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,6 +58,39 @@ ActiveRecord::Schema.define(version: 2020_10_22_063113) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "request_id"
+    t.integer "member_id"
+    t.datetime "in_at"
+    t.datetime "out_at"
+    t.string "image_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "event_genre_id"
+    t.string "title"
+    t.datetime "start_day"
+    t.datetime "finish_day"
+    t.integer "people"
+    t.text "body"
+    t.string "help"
+    t.string "chief_name"
+    t.integer "approval_status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "admin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

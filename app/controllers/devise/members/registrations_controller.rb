@@ -68,7 +68,13 @@ class Devise::Members::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana, :company_name])
   end
 
+  #アカウント登録後のリダイレクト先
   def after_sign_in_path_for(resource)
+    toppage_path
+  end
+
+  #アカウント編集後のリダイレクト先
+  def after_update_path_for(resource)
     member_path
   end
 

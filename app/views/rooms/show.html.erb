@@ -1,0 +1,82 @@
+<% @page_title = "チャットページ" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
+
+
+<% if member_signed_in? %>
+<div class="chat-area">
+  <div class="text-center">
+   <h3 class="chat-title">
+    管理者とのチャットルーム
+   </h3>
+  </div>
+    <% @messages.each do |f| %>
+      <!-- メッセージがMemberによるものだったら -->
+      <% if f.is_member %>
+        <!-- メッセージを右に寄せる -->
+        <div class="text-area">
+         <div class="text-right">
+          <h4><%= f.content %></h4>
+          <p><%= f.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+         </div>
+        </div>
+      <!-- メッセージがAdminによるものだったら -->
+      <% else %>
+        <!-- メッセージを左に寄せる -->
+        <div class="text-area">
+         <div class="text-left">
+          <p>管理者</p>
+          <h4><%= f.content %></h4>
+          <p><%= f.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+         </div>
+        </div>
+    <% end %>
+<% end %>
+</div>
+
+
+
+<% elsif admin_signed_in?%>
+<div class="chat-area">
+  <div class="text-center">
+   <h3 class="chat-title">
+    <%= @member.full_name %>さんとのチャットルーム
+   </h3>
+  </div>
+    <% @messages.each do |f| %>
+      <!-- メッセージがMemberによるものだったら -->
+      <% if f.is_member %>
+        <!-- メッセージを左に寄せる -->
+        <div class="text-area">
+         <div class="text-left">
+          <p>会員：<%= @member.full_name %></p>
+          <h4><%= f.content %></h4>
+          <p><%= f.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+         </div>
+        </div>
+      <!-- メッセージがAdminによるものだったら -->
+      <% else %>
+        <!-- メッセージを右に寄せる -->
+        <div class="text-area">
+         <div class="text-right">
+          <h4><%= f.content %></h4>
+          <p><%= f.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+         </div>
+        </div>
+      <% end %>
+    <% end %>
+ </div>
+<% end %>
+
+
+<div class="text-center">
+<%= render "form", room: @room, message: @message %>
+</div>
+
+<br>
+
+</div>

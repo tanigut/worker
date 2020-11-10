@@ -1,0 +1,25 @@
+<% @page_title = "予定表" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-calendar-alt size"><%= @page_title %></div>
+</div>
+
+<%= month_calendar(attribute: :start_day, events: @requests, number_of_weeks: 2) do |date, requests| %>
+  <%= date.day %>
+  <% requests.each do |request| %>
+      <span>・</span>
+      <%= request.title %>
+      <%= request.start_day.strftime("%H:%M") %>
+      <span>〜</span>
+      <%= request.finish_day.strftime("%H:%M") %>
+      <br>
+  <% end %>
+<% end %>
+
+<div class="text-right">
+<%= link_to '新規依頼する', new_request_path, class: 'btn btn-primary' %>
+</div>
+
+</div>

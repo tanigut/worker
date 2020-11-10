@@ -2,6 +2,35 @@
 
 <div class="container">
 
-<h2><%= @page_title %></h2>
+<div class="main-visual">
+    <div class="main-visual-content">
+      <!-- pタグ（と文字）を追加 -->
+      <p class="main-visual-text">
+      </p>
+      <p class="main-visual-name">
+      </p>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="text-center">
+<div class="col-xs-4">
+  <h4>会員の方</h4><br>
+  <%= button_to "Workerへログイン", new_member_session_path, class: "btn btn-success", method: :get %>
+</div>
+
+<div class="col-xs-4">
+  <h4>初めての方</h4><br>
+  <%= button_to "このサイトについて", about_path, class: "btn btn-warning", method: :get %>
+</div>
+
+<div class="col-xs-4">
+    <h4>ゲストの方</h4><br>
+    <%= button_to "ゲストログイン(閲覧用)", top_guest_sign_in_path, method: :post %>
+</div>
+</div>
+
 
 </div>

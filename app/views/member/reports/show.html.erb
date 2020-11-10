@@ -1,0 +1,57 @@
+<% @page_title = "報告詳細" %>
+
+<div class="container">
+
+<div class="main-title">
+  <div class="fas fa-user size"><%= @page_title %></div>
+</div>
+
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>予約ID</th>
+    <td><%= @request.id %></td>
+  </tr>
+
+  <tr>
+    <th>責任者</th>
+    <td><%= @request.chief_name %></td>
+  </tr>
+
+  <tr>
+    <th>開始時刻</th>
+    <td><%= @request.report.in_at %></td>
+  </tr>
+
+  <tr>
+    <th>終了時刻</th>
+    <td><%= @request.report.out_at %></td>
+  </tr>
+
+  <tr>
+    <th>作業時間</th>
+  　<td><%= ((@request.report.out_at - @request.report.in_at)/60.round(1)).ceil.to_s %><span>分</span></td>
+
+</table>
+
+<br>
+
+<div class="row">
+
+<div class="text-center">
+  <h3>作業内容</h3>
+</div>
+
+<br>
+
+<div class="col-xs-6">
+ <%= attachment_image_tag @report, :image, :fill, 500, 500, format: 'jpeg' %>
+</div>
+
+<div class="col-xs-6">
+ <h4><%= @report.body %></h4>
+</div>
+
+</div>
+
+
+</div>

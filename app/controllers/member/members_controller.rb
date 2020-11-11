@@ -4,6 +4,8 @@ class Member::MembersController < ApplicationController
 
 	def show
 		@member = current_member
+		@requests = @member.requests
+		#@requests = @member.eager_load(:requests)
 	end
 
 	def edit

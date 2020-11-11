@@ -6,8 +6,11 @@
   <div class="fas fa-user size"><%= @page_title %></div>
 </div>
 
+
 <div class="main-body">
+<div class="col-xs-4">
 <h4>会員情報</h4>
+
 <table class="table table-hover table-inverse">
   <tr>
     <th>会員ID</th>
@@ -32,6 +35,35 @@
   </tr>
 
   <%= button_to '編集', edit_member_path(@member), class: 'btn-sm btn-primary', method: :get %>
+
+
+<h4>申請状況</h4>
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>対応中</th>
+    <td><%= @requests.where(approval_status: 0).count %></td>
+  </tr>
+
+  <tr>
+    <th>承認</th>
+    <td><%= @requests.where(approval_status: 1).count %><br>
+    </td>
+  </tr>
+
+  <tr>
+    <th>否認</th>
+    <td><%= @requests.where(approval_status: 2).count %></td>
+  </tr>
+
+  <tr>
+    <th>終了</th>
+    <td><%= @requests.where(approval_status: 3).count %></td>
+  </tr>
+
+</table>
 </div>
 
+<div class="col-xs-8">
+<%#= render "requests/body", requests: @requests %>
+<div>
 </div>

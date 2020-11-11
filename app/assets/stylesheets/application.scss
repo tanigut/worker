@@ -67,10 +67,14 @@ header {
 //-------------------------------------------------------↑header--//
 //--------------------------------------------------------↓image--//
 
-.img_prev:hover {
-  cursor: pointer;
-  opacity: 0.3;
-  transform: scale(1.01, 1.01);
+#img_field {
+  font-size: 25px;
+  font-style: inherit;
+  margin: 0 auto;
+  color: black;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 40px;
 }
 
 //-------------------------------------------------------↑image--//

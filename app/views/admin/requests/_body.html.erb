@@ -4,7 +4,6 @@
   <th class="info">イベント日</th>
   <th class="info">イベントジャンル</th>
   <th class="info">イベント</th>
-  <th class="info">イベント詳細</th>
   <th class="info">責任者</th>
   <th class="info">人数</th>
   <th class="info">協力会社</th>
@@ -17,13 +16,12 @@
  <% requests.each do |request| %>
  <tr>
   <td>
-      <%= request.start_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
+      <%= request.start_day.strftime("%Y年%m月%d日 %H:%M") %>
       <span>~</span>
-      <%= request.finish_day.strftime("%Y年%m月%d日 %H:%M:%S") %>
+      <%= request.finish_day.strftime("%Y年%m月%d日 %H:%M") %>
   </td>
   <td><%= request.event_genre.name %></td>
   <td><%= request.title %></td>
-  <td><%= request.body %></td>
   <td><%= request.chief_name %></td>
   <td><%= request.people %></td>
   <td><%= request.help %></td>

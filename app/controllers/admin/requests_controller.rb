@@ -18,7 +18,7 @@ class Admin::RequestsController < ApplicationController
 	def update
 		@request = Request.find(params[:id])
 		if @request.update(request_params)
-		   redirect_to admin_requests_path(@request)
+		   redirect_to admin_requests_path(@request), notice: "リクエスト情報を変更しました。"
 		else
 		　　render :edit
 		end

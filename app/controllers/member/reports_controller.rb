@@ -29,7 +29,7 @@ class Member::ReportsController < ApplicationController
         #今の時間を取得
         @now = Time.now
         if @report.save
-           redirect_to new_request_report_path(@request), notice: "開始時刻を送信しました。"
+           #redirect_to new_request_report_path(@request), notice: "開始時刻を送信しました。"
         else
            render :new
         end
@@ -47,6 +47,7 @@ class Member::ReportsController < ApplicationController
           if @report.update(report_params)
              @request.save!
              redirect_to new_request_report_path(@report.request)
+             #render :new
           else
              render :new
           end

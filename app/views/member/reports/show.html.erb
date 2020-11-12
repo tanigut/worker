@@ -6,6 +6,10 @@
   <div class="fas fa-user size"><%= @page_title %></div>
 </div>
 
+<% if @request.report.nil? %>
+<h2>作業報告がありません</h2>
+
+<% else %>
 <table class="table table-hover table-inverse">
   <tr>
     <th>予約ID</th>
@@ -51,7 +55,13 @@
  <h4><%= @report.body %></h4>
 </div>
 
+<% end %>
+
 </div>
 
+<br>
 
+<div class="text-center">
+<%= button_to '戻る', :back, class: 'btn btn-primary', method: :get  %>
 </div>
+

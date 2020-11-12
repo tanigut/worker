@@ -7,7 +7,6 @@ class RoomsController < ApplicationController
          rooms = current_member.rooms
          @new_messages = Message.where(status: 1)
          @admins = Admin.all
-         rooms = current_member.rooms
          @rooms = rooms.eager_load(:messages).where("messages.status = '1'")
          #自分が入ってるroomの相手のidを格納する
          @admin_ids = []

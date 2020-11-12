@@ -14,8 +14,6 @@
     管理者とのチャットルーム
    </h3>
   </div>
-<% if member_signed_in? %>
-  <h3>管理者とのチャットルーム</h3>
     <% @messages.each do |f| %>
       <!-- メッセージがMemberによるものだったら -->
       <% if f.is_member %>
@@ -40,9 +38,15 @@
 <% end %>
 </div>
 
+
+
 <% elsif admin_signed_in?%>
-  <h3><%= @member.full_name %>さんとのチャットルーム</h3>
-  <div class="chat-field">
+<div class="chat-area">
+  <div class="text-center">
+   <h3 class="chat-title">
+    <%= @member.full_name %>さんとのチャットルーム
+   </h3>
+  </div>
     <% @messages.each do |f| %>
       <!-- メッセージがMemberによるものだったら -->
       <% if f.is_member %>

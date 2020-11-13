@@ -7,12 +7,12 @@ class Member::ReportsController < ApplicationController
     end
 
     def show
-        @request = Request.find(params[:request_id])
+        @request = current_member.requests.find(params[:request_id])
         @report = @request.report
     end
 
     def new
-    	  @request = Request.find(params[:request_id])
+    	  @request = current_member.requests.find(params[:request_id])
     	  if @request.report.nil?
            @report = Report.new
         else

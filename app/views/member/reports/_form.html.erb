@@ -12,9 +12,10 @@
   <% elsif report.out_at.nil? %>
     <%= form_with(model:[request,report], remort: true) do |f| %>
 
-    <%= f.file_field :image, class: 'img_field', style: 'display:none;' %>
-    <%= attachment_image_tag report, :image, fallback: 'no-image.jpg', width: '45%', height: '45%', onClick: "$('.img_field').click()", class: 'center-block img-thumbnail img-responsive img_prev' %>
-    <h4>ダブルクリックして画像選択</h4>
+    <!--image preview機能-->
+    <%= attachment_image_tag report, :image, id: 'preview', fallback: 'no-image.jpg', width: '45%', height: '45%' %>
+    <%= f.file_field :image, class: 'img_field', onchange: 'previewImage(preview)' %>
+    <!--image preview機能-->
 
     <div class="field row"><br />
       <%= f.text_area :body, :size => "70x10", :placeholder => "作業内容を記載してください" %>

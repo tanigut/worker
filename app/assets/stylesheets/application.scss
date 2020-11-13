@@ -65,19 +65,6 @@ header {
 }
 
 //-------------------------------------------------------↑header--//
-//--------------------------------------------------------↓image--//
-
-#img_field {
-  font-size: 25px;
-  font-style: inherit;
-  margin: 0 auto;
-  color: black;
-  border-radius: 5px;
-  text-align: center;
-  line-height: 40px;
-}
-
-//-------------------------------------------------------↑image--//
 //--------------------------------------------------------↓main--//
 
 main {
@@ -97,6 +84,10 @@ main {
   border-bottom: 1px solid gray;
   list-style: none;
   display: flex;
+}
+
+.notice {
+  color: #008000;
 }
 
 //-------------------------------------------------------↑main--//

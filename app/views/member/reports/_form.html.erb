@@ -13,7 +13,7 @@
     <%= form_with(model:[request,report], remort: true) do |f| %>
 
     <!--image preview機能-->
-    <%= attachment_image_tag report, :image, id: 'preview', fallback: 'no-image.jpg', width: '45%', height: '45%' %>
+    <%#= attachment_image_tag report, :image, id: 'preview', fallback: 'no-image.jpg', width: '45%', height: '45%' %>
     <%= f.file_field :image, class: 'img_field', onchange: 'previewImage(preview)' %>
     <!--image preview機能-->
 

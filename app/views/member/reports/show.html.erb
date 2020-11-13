@@ -23,12 +23,12 @@
 
   <tr>
     <th>開始時刻</th>
-    <td><%= @request.report.in_at %></td>
+    <td><%= @request.report.in_at.strftime("%Y年%m月%d日 %H:%M") %></td>
   </tr>
 
   <tr>
     <th>終了時刻</th>
-    <td><%= @request.report.out_at %></td>
+    <td><%= @request.report.out_at.strftime("%Y年%m月%d日 %H:%M") %></td>
   </tr>
 
   <tr>

@@ -2,64 +2,72 @@
 
 <div class="container">
 
-<div class="main-title">
-  <div class="fas fa-comment-alt size">
-    <%= @page_title %>
+<% if current_member || current_admin %>
+
+  <div class="main-title">
+    <div class="fas fa-comment-alt size">
+      <%= @page_title %>
+    </div>
   </div>
+
+  <% if member_signed_in? %>
+    <div class="text-center">
+     <% @admins.each do |admin| %>
+      <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+      <% if @admin_ids.include?(admin.id) %>
+          <h3 style="color:green">新規メッセージ
+          <%= @rooms.pluck(:admin_id).select{ |id| id == admin.id }.count %>
+          </h3>
+          <%= button_to "チャット", room_path(current_member.rooms.find_by(admin_id: admin.id)), class: 'btn btn-primary', method: :get %>
+      <% else %>
+      <%= button_to "新規", rooms_path(room: { admin_id: admin.id }), class: 'btn btn-success', method: :post %>
+      <% end %>
+     <% end %>
+   </div>
+
+  <% elsif admin_signed_in? %>
+  <table class="table table-bordered">
+  <thead>
+    <tr>
+     <th class="info">会員id</th>
+     <th class="info">名前</th>
+     <th class="info">会社名</th>
+     <th class="info"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @members.each do |member| %>
+     <tr>
+      <td><%= member.id %></td>
+      <td><%= member.full_name %></td>
+      <td><%= member.company_name %></td>
+      <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
+      <% if @member_ids.include?(member.id) %>
+      <td>
+          <h3 style="color:green">
+            <%= button_to "チャット", room_path(current_admin.rooms.find_by(member_id: member.id)), class: 'btn btn-primary', method: :get %>
+            <%= @rooms.pluck(:member_id).select{ |id| id == member.id }.count %>
+          </h3>
+      </td>
+      <% else %>
+      <td><%= button_to "新規",rooms_path(room: {member_id: member.id}), class: 'btn btn-success', method: :post %></td>
+      <% end %>
+     </tr>
+     <% end %>
+  </tbody>
+  </table>
+
+  <% end %>
+
+  <% if admin_signed_in? %>
+  <%= paginate @members %>
+  <% end %>
+
+<% else %>
+<div class="main-title">
+    <h2>アクセス権限がありません</h2>
 </div>
-
-<% if member_signed_in? %>
-  <div class="text-center">
-   <% @admins.each do |admin| %>
-    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
-    <% if @admin_ids.include?(admin.id) %>
-        <h3 style="color:green">新規メッセージ
-        <%= @rooms.pluck(:admin_id).select{ |id| id == admin.id }.count %>
-        </h3>
-        <%= button_to "チャット", room_path(current_member.rooms.find_by(admin_id: admin.id)), class: 'btn btn-primary', method: :get %>
-   <% else %>
-    <%= button_to "新規", rooms_path(room: { admin_id: admin.id }), class: 'btn btn-success', method: :post %>
-   <% end %>
-   <% end %>
- </div>
-
-<% elsif admin_signed_in? %>
-<table class="table table-bordered">
-<thead>
- <tr>
-   <th class="info">会員id</th>
-   <th class="info">名前</th>
-   <th class="info">会社名</th>
-   <th class="info"></th>
- </tr>
-</thead>
-
-<tbody>
-   <% @members.each do |member| %>
-   <tr>
-    <td><%= member.id %></td>
-    <td><%= member.full_name %></td>
-    <td><%= member.company_name %></td>
-    <!-- もしチャットルームがあったらそのチャットページへ。なければ新たなチャットルームを作成 -->
-    <% if @member_ids.include?(member.id) %>
-    <td>
-        <h3 style="color:green">
-        <%= button_to "チャット", room_path(current_admin.rooms.find_by(member_id: member.id)), class: 'btn btn-primary', method: :get %>
-          <%= @rooms.pluck(:member_id).select{ |id| id == member.id }.count %>
-        </h3>
-    </td>
-    <% else %>
-    <td><%= button_to "新規",rooms_path(room: {member_id: member.id}), class: 'btn btn-success', method: :post %></td>
-    <% end %>
-   </tr>
-   <% end %>
-</tbody>
-</table>
-
-<% end %>
-
-<% if admin_signed_in? %>
-<%= paginate @members %>
 <% end %>
 
 </div>

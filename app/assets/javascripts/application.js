@@ -17,18 +17,16 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(function () {
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('.img_prev').attr('src', e.target.result);
-      }
-      reader.readAsDataURL(input.files[0]);
-    }
+function previewImage(id) {
+  const target = this.event.target;
+  const file = target.files[0];
+  const reader = new FileReader();
+  reader.onloadend = function() {
+    preview.src = reader.result;
+  };
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
   }
-
-  $('.img_field').change(function () {
-    readURL(this);
-  });
-});
+}

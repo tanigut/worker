@@ -28,12 +28,13 @@ class Member::RequestsController < ApplicationController
 	end
 
 	def edit
-		@request = Request.find(params[:id])
+		@request = current_member.requests.find(params[:id])
 		@genres = EventGenre.where(is_active: true)
 	end
 
 	def update
 		@request = Request.find(params[:id])
+		@request.member_id = current_member.id
 		@genres = EventGenre.where(is_active: true)
 		@request.approval_status = 0
 		if @request.update(request_params)

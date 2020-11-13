@@ -30,7 +30,7 @@
     <%= link_to "会員一覧", admin_members_path %>
   </li>
   <li class="nav-list-item">
-    <% if Request.where(approval_status: 1).count > 0 %>
+    <% if Request.where(approval_status: 0).count > 0 %>
     <div style="color:red">
         <p>new</p>
     </div>

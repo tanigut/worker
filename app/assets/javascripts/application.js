@@ -17,7 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
-$ function previewImage(id) {
+$(function previewImage(id) {
   const target = this.event.target;
   const file = target.files[0];
   const reader = new FileReader();

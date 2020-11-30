@@ -8,7 +8,7 @@ class Admin::RequestsController < ApplicationController
 	end
 
 	def index
-        @requests = Request.all.page(params[:page]).per(15)
+        @requests = Request.includes(:event_genre).page(params[:page]).per(15)
 	end
 
 	def edit

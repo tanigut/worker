@@ -6,7 +6,6 @@ class Request < ApplicationRecord
 
   enum approval_status: { responding: 0, approval: 1, denial: 2, finish: 3 }
 
-
   validates :chief_name, :body, :title, :start_day, :finish_day, presence: true
   validates :people, presence: true,
     numericality: {
@@ -17,23 +16,22 @@ class Request < ApplicationRecord
     }
 
   #日付のバリデーション
-  #if :start_day && :finish_day.nil?
-    #validates :start_day, :finish_day, presence: true
-  #else
-    #validate :start_finish_check
-    #def start_finish_check
-        #errors.add(:finish_day, "の日付を正しく記入してください。") unless
-        #self.start_day < self.finish_day
-    #end
-  #end
+  validate :date_not_before_today
+  validate :start_finish_check
 
-  #def start_finish_check
-    #unless :start_day && :finish_day.nil?
-      #if self.start_day > self.finish_day
-         #errors.add(:finish_day, "の日付を正しく記入してください。")
-      #end
-    #end
-  #end
+  def date_not_before_today
+    unless start_day.nil? || finish_day.nil?
+     errors.add(:start_day, "は今日以降のものを選択してください") if start_day < Date.today
+    end
+  end
+
+  def start_finish_check
+     unless start_day.nil? || finish_day.nil?
+      errors.add(:finish_day, "の日付を正しく記入してください。") unless
+      self.start_day < self.finish_day
+     end
+  end
+  #日付のバリデーション
 
 
   #検索機能

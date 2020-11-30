@@ -8,7 +8,7 @@ class Member::RequestsController < ApplicationController
 	end
 
 	def index
-		@requests = current_member.requests.page(params[:page]).per(15)
+		@requests = current_member.requests.includes(:event_genre, :report).page(params[:page]).per(15)
 	end
 
 	def new

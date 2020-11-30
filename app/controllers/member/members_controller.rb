@@ -5,7 +5,7 @@ class Member::MembersController < ApplicationController
 	def show
 		@member = current_member
 		@requests = @member.requests
-		@members = @member.requests.where(approval_status: 3)
+		@members = @member.requests.includes(:report).where(approval_status: 3)
 		#@members = @member.eager_load(:requests).where("messages.status = '3'")
 		#@requests = @member.eager_load(:requests)
 	end

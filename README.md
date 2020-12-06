@@ -37,6 +37,6 @@ https://docs.google.com/spreadsheets/d/117g3HnjpcVDf-4JWIqwb0qRlWV2BM9VawBf4HKll
 - 仮想環境：Vagrant,VirtualBox
 
 ## システム利用
-- URL 顧客側
-- URL 管理側
+- URL http://worker-sample.work/
+
 

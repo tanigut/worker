@@ -39,6 +39,14 @@ https://docs.google.com/spreadsheets/d/117g3HnjpcVDf-4JWIqwb0qRlWV2BM9VawBf4HKll
 ## システム利用
 - URL http://worker-sample.work/
 
+## ログイン情報
+- 会員側
+　ゲストログインをご利用ください。
+
+- 管理者側
+　メールアドレス：admins@example.com
+　パスワード：admins
+
 ## 本サイトのポイント
 イベントリクエストの送信からイベント完了までの一通りの動作をできるだけ簡潔にできるように工夫しました。
 また、イベントリクエストのステータス状況は管理者側で管理し、ファシリティ管理者がスケジュール管理しやすいように作成しました。
